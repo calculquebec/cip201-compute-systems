@@ -1,5 +1,5 @@
-title: CIP201 - Maîtriser l’utilisation des serveurs de calcul
-author: Équipe Calcul Québec
+title: CIP201 - Mastering the Alliance's Compute Systems
+author: Calcul Québec Team
 logo: images/logo.png
 
 # https://jupyterbook.org/content/execute.html
@@ -8,7 +8,7 @@ execute:
 
 # Information about where the book exists on the web
 repository:
-  url: https://github.com/calculquebec/utilisation-serveurs-calcul
+  url: https://github.com/calculquebec/cip201-compute-systems
   branch: main
 
 # https://jupyterbook.org/structure/configure.html#exclude-pages-from-your-build
@@ -25,4 +25,4 @@ launch_buttons:
 
 sphinx:
   config:
-    language: fr
+    language: en
