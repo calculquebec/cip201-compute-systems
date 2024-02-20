@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Lots de tâches &#8212; CIP201 - Mastering the Alliance&#39;s Compute Systems</title>
+    <title>Task Arrays for Data Parallelism &#8212; CIP201 - Mastering the Alliance&#39;s Compute Systems</title>
   
   
   
@@ -57,12 +57,12 @@
     <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = '3-lots-taches';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '3-task-arrays';</script>
     <link rel="icon" href="_static/logo.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Les espaces de stockage" href="4-stockage.html" />
-    <link rel="prev" title="Bien choisir les ressources" href="2-ressources.html" />
+    <link rel="next" title="Storage spaces" href="4-storage.html" />
+    <link rel="prev" title="Choose resources wisely" href="2-resources.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -140,7 +140,7 @@
 
   
 
-<a class="navbar-brand logo" href="0-a_propos.html">
+<a class="navbar-brand logo" href="0-about.html">
   
   
   
@@ -172,18 +172,18 @@
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
-                <a class="reference internal" href="0-a_propos.html">
-                    À propos
+                <a class="reference internal" href="0-about.html">
+                    Mastering the Alliance’s Compute Systems
                 </a>
             </li>
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1-introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="2-ressources.html">Bien choisir les ressources</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Lots de tâches</a></li>
-<li class="toctree-l1"><a class="reference internal" href="4-stockage.html">Les espaces de stockage</a></li>
-<li class="toctree-l1"><a class="reference internal" href="90-exercices.html">Exercices supplémentaires</a></li>
-<li class="toctree-l1"><a class="reference internal" href="99-references.html">Références</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2-resources.html">Choose resources wisely</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Task Arrays for Data Parallelism</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4-storage.html">Storage spaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="90-exercises.html">Additional Exercises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="99-references.html">References</a></li>
 </ul>
 
     </div>
@@ -253,7 +253,7 @@
       
       
       
-      <li><a href="_sources/3-lots-taches.ipynb" target="_blank"
+      <li><a href="_sources/3-task-arrays.ipynb" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -337,7 +337,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Lots de tâches</h1>
+    <h1>Task Arrays for Data Parallelism</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -376,8 +376,8 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="lots-de-taches">
-<h1>Lots de tâches<a class="headerlink" href="#lots-de-taches" title="Link to this heading">#</a></h1>
+  <section class="tex2jax_ignore mathjax_ignore" id="task-arrays-for-data-parallelism">
+<h1>Task Arrays for Data Parallelism<a class="headerlink" href="#task-arrays-for-data-parallelism" title="Link to this heading">#</a></h1>
 <p>Le calcul haute-performance consiste non seulement au calcul parallèle par tâche (<em><strong>parallélisme des tâches</strong></em>),
 mais aussi au calcul de données en parallèle dans plusieurs tâches et/ou processus en simultané (<em><strong>parallélisme de données</strong></em>).
 Ce chapitre vous donnera les outils nécessaires pour gérer un grand nombre de tâches
@@ -677,20 +677,20 @@ sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">0</
                   
 <div class="prev-next-area">
     <a class="left-prev"
-       href="2-ressources.html"
+       href="2-resources.html"
        title="previous page">
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Bien choisir les ressources</p>
+        <p class="prev-next-title">Choose resources wisely</p>
       </div>
     </a>
     <a class="right-next"
-       href="4-stockage.html"
+       href="4-storage.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Les espaces de stockage</p>
+        <p class="prev-next-title">Storage spaces</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
