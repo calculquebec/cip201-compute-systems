@@ -347,12 +347,12 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rappel-le-calcul-haute-performance">Rappel - le calcul haute performance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differents-types-de-taches">Différents types de tâches</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelisme-de-donnees">Parallélisme de données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-high-performance-computing">Reminder - High Performance Computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-kinds-of-compute-tasks">Different kinds of compute tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">Data Parallelism</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#des-questions-a-se-poser">Des questions à se poser</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-to-think-about">Questions to Think About</a></li>
 </ul>
             </nav>
         </div>
@@ -366,8 +366,8 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="introduction">
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
-<section id="rappel-le-calcul-haute-performance">
-<h2>Rappel - le calcul haute performance<a class="headerlink" href="#rappel-le-calcul-haute-performance" title="Link to this heading">#</a></h2>
+<section id="reminder-high-performance-computing">
+<h2>Reminder - High Performance Computing<a class="headerlink" href="#reminder-high-performance-computing" title="Link to this heading">#</a></h2>
 <p>Problématiques, solutions et préalables :</p>
 <ul class="simple">
 <li><p>Lorsqu’on doit lancer une <strong>grande quantité de calculs</strong>
@@ -379,18 +379,18 @@ chaque tâche doit être soumise à un ordonnanceur de tâches.</p></li>
 qui seront réservées lors de l’exécution d’un calcul.</p></li>
 </ul>
 </section>
-<section id="differents-types-de-taches">
-<h2>Différents types de tâches<a class="headerlink" href="#differents-types-de-taches" title="Link to this heading">#</a></h2>
-<p>Deux grandes catégories de tâches qui travaillent sur un même problème :
+<section id="different-kinds-of-compute-tasks">
+<h2>Different kinds of compute tasks<a class="headerlink" href="#different-kinds-of-compute-tasks" title="Link to this heading">#</a></h2>
+<p>Two categories of compute tasks working on the same problem:
 <img alt="Séquentiel vs parallel" src="_images/serial-vs-parallel.svg" /></p>
 <p>Parmi les tâches séquentielles, il existe aussi le calcul vectoriel.</p>
 <ul class="simple">
 <li><p>Description : <strong>une même opération</strong> sur des vecteurs de données</p></li>
 <li><p>Ressources : un processeur moderne ou un <strong>accélérateur</strong> (GPU)</p></li>
 </ul>
-<p><img alt="Calcul vectoriel" src="_images/calcul-vectoriel.svg" /></p>
-<section id="parallelisme-de-donnees">
-<h3>Parallélisme de données<a class="headerlink" href="#parallelisme-de-donnees" title="Link to this heading">#</a></h3>
+<p><img alt="Vectorized Computation" src="_images/vectorized-computation.svg" /></p>
+<section id="data-parallelism">
+<h3>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Beaucoup de données à traiter de manière indépendante</p></li>
 <li><p><strong>Plusieurs tâches séquentielles en simultané</strong></p>
@@ -400,11 +400,11 @@ qui seront réservées lors de l’exécution d’un calcul.</p></li>
 </ul>
 </li>
 </ul>
-<p><img alt="Parallélisme de données" src="_images/data-parallelism.svg" /></p>
+<p><img alt="Data Parallelism" src="_images/data-parallelism.svg" /></p>
 </section>
 </section>
-<section id="des-questions-a-se-poser">
-<h2>Des questions à se poser<a class="headerlink" href="#des-questions-a-se-poser" title="Link to this heading">#</a></h2>
+<section id="questions-to-think-about">
+<h2>Questions to Think About<a class="headerlink" href="#questions-to-think-about" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Quel <strong>type de calculs</strong> effectuez-vous?</p>
 <ul>
@@ -503,12 +503,12 @@ qui seront réservées lors de l’exécution d’un calcul.</p></li>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#rappel-le-calcul-haute-performance">Rappel - le calcul haute performance</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#differents-types-de-taches">Différents types de tâches</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#parallelisme-de-donnees">Parallélisme de données</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#reminder-high-performance-computing">Reminder - High Performance Computing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-kinds-of-compute-tasks">Different kinds of compute tasks</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-parallelism">Data Parallelism</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#des-questions-a-se-poser">Des questions à se poser</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#questions-to-think-about">Questions to Think About</a></li>
 </ul>
   </nav></div>
 
