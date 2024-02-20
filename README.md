@@ -1,2 +1,3 @@
-# CIP201 - Maîtriser l’utilisation des serveurs de calcul
-Atelier de formation de niveau intermédiaire pour aller plus loin dans l'utilisation des serveurs de calcul.
+# CIP201 - Mastering the Alliance's Compute Systems
+Training workshop of intermediate level to optimize
+your usage of the Alliance's compute systems.
