@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Préparation des données &#8212; CIP201 - Mastering the Alliance&#39;s Compute Systems</title>
+    <title>Generating the data &#8212; CIP201 - Mastering the Alliance&#39;s Compute Systems</title>
   
   
   
@@ -57,7 +57,7 @@
     <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
     <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
-    <script>DOCUMENTATION_OPTIONS.pagename = 'donnees/README';</script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'data/README';</script>
     <link rel="icon" href="../_static/logo.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -253,7 +253,7 @@
       
       
       
-      <li><a href="../_sources/donnees/README.md" target="_blank"
+      <li><a href="../_sources/data/README.md" target="_blank"
    class="btn btn-sm btn-download-source-button dropdown-item"
    title="Download source file"
    data-bs-placement="left" data-bs-toggle="tooltip"
@@ -337,7 +337,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Préparation des données</h1>
+    <h1>Generating the data</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -347,9 +347,9 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-requis">Module requis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-de-sequences-aleatoires">Création de séquences aléatoires</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemples-d-execution">Exemples d’exécution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-modules">Required modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-random-sequences">Generating random sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blastn-example">Blastn example</a></li>
 </ul>
             </nav>
         </div>
@@ -361,25 +361,25 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="preparation-des-donnees">
-<h1>Préparation des données<a class="headerlink" href="#preparation-des-donnees" title="Link to this heading">#</a></h1>
-<section id="module-requis">
-<h2>Module requis<a class="headerlink" href="#module-requis" title="Link to this heading">#</a></h2>
+  <section class="tex2jax_ignore mathjax_ignore" id="generating-the-data">
+<h1>Generating the data<a class="headerlink" href="#generating-the-data" title="Link to this heading">#</a></h1>
+<section id="required-modules">
+<h2>Required modules<a class="headerlink" href="#required-modules" title="Link to this heading">#</a></h2>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">load</span> <span class="n">gcc</span> <span class="n">blast</span><span class="o">+</span> <span class="n">seqkit</span>
 </pre></div>
 </div>
 </section>
-<section id="creation-de-sequences-aleatoires">
-<h2>Création de séquences aléatoires<a class="headerlink" href="#creation-de-sequences-aleatoires" title="Link to this heading">#</a></h2>
+<section id="generating-random-sequences">
+<h2>Generating random sequences<a class="headerlink" href="#generating-random-sequences" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Deux espèces de référence (espece_*.fa)</p>
+<li><p>Four know species (species_*.fa)</p>
 <ul>
-<li><p>Conversion en base de données Blast</p></li>
+<li><p>Converted into Blast databases</p></li>
 </ul>
 </li>
-<li><p>Des séquences basées sur une espèce choisie aléatoirement (chr_*.fa)</p>
+<li><p>16 files of random sequences of unknow species (chr_*.fa)</p>
 <ul>
-<li><p>Division en 10 fichiers</p></li>
+<li><p>Divided in 10 file chunks</p></li>
 </ul>
 </li>
 </ul>
@@ -387,9 +387,9 @@ document.write(`
 </pre></div>
 </div>
 </section>
-<section id="exemples-d-execution">
-<h2>Exemples d’exécution<a class="headerlink" href="#exemples-d-execution" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">-</span><span class="n">p</span> <span class="n">blastn</span> <span class="o">-</span><span class="n">db</span> <span class="n">espece_A</span> <span class="o">-</span><span class="n">query</span> <span class="n">chr_M</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">out_A_M</span><span class="o">.</span><span class="n">log</span>
+<section id="blastn-example">
+<h2>Blastn example<a class="headerlink" href="#blastn-example" title="Link to this heading">#</a></h2>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">time</span> <span class="o">-</span><span class="n">p</span> <span class="n">blastn</span> <span class="o">-</span><span class="n">db</span> <span class="n">species_A</span> <span class="o">-</span><span class="n">query</span> <span class="n">chr_M</span><span class="o">.</span><span class="n">fa</span> <span class="o">&gt;</span> <span class="n">out_A_M</span><span class="o">.</span><span class="n">log</span>
 </pre></div>
 </div>
 </section>
@@ -408,7 +408,7 @@ document.write(`
         },
         kernelOptions: {
             name: "python3",
-            path: "./donnees"
+            path: "./data"
         },
         predefinedOutput: true
     }
@@ -441,9 +441,9 @@ document.write(`
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#module-requis">Module requis</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creation-de-sequences-aleatoires">Création de séquences aléatoires</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#exemples-d-execution">Exemples d’exécution</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#required-modules">Required modules</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#generating-random-sequences">Generating random sequences</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#blastn-example">Blastn example</a></li>
 </ul>
   </nav></div>
 
