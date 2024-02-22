@@ -8,7 +8,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <title>Choose resources wisely &#8212; CIP201 - Mastering the Alliance&#39;s Compute Systems</title>
+    <title>Use Resources Wisely &#8212; CIP201 - Mastering the Alliance&#39;s Compute Systems</title>
   
   
   
@@ -181,7 +181,7 @@
         </ul>
         <ul class="current nav bd-sidenav">
 <li class="toctree-l1"><a class="reference internal" href="1-introduction.html">Introduction</a></li>
-<li class="toctree-l1 current active"><a class="current reference internal" href="#">Choose resources wisely</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Use Resources Wisely</a></li>
 <li class="toctree-l1"><a class="reference internal" href="3-task-arrays.html">Task Arrays for Data Parallelism</a></li>
 <li class="toctree-l1"><a class="reference internal" href="4-storage.html">Storage Spaces</a></li>
 <li class="toctree-l1"><a class="reference internal" href="90-exercises.html">Additional Exercises</a></li>
@@ -339,7 +339,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Choose resources wisely</h1>
+    <h1>Use Resources Wisely</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -349,38 +349,38 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectif-construction-d-un-script-de-tache-slurm">Objectif - construction d’un script de tâche Slurm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-calculs-localement">Analyse des calculs localement</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sous-windows">Sous Windows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sous-mac-os">Sous Mac OS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sous-linux">Sous Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-writing-a-proper-job-script-for-slurm">Goal - Writing a Proper Job Script for Slurm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-compute-jobs-on-your-computer">Analysing Compute Jobs on Your Computer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-windows">In Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-mac-os">In Mac OS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-linux">In Linux</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-taches-sur-la-grappe-de-calcul">Analyse des tâches sur la grappe de calcul</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ressources-utilisees-d-une-tache-terminee">Ressources utilisées d’une tâche terminée</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ressources-utilisees-par-une-tache-cpu-en-cours">Ressources utilisées par une tâche CPU en cours</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-valider-le-comportement-d-une-tache-active"><strong>Exercice</strong> - Valider le comportement d’une tâche active</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-compute-jobs-on-clusters">Analysing Compute Jobs on Clusters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-used-by-a-completed-job">Resources Used by a Completed Job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-used-by-a-running-job">Resources Used by a Running Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-checking-resources-used-by-a-running-job"><strong>Exercise</strong> - Checking Resources Used by a Running Job</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-ressources-utilisees-par-une-tache-gpu-en-cours">(Démo) Ressources utilisées par une tâche GPU en cours</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-tester-crunch-avec-un-gpu"><strong>Exercice</strong> - Tester Crunch avec un GPU</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparer-la-vitesse-cpu-vs-gpu">Comparer la vitesse CPU vs GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-checking-resources-used-by-a-running-gpu-job">(Demo) Checking Resources Used by a Running GPU Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-testing-crunch-py-with-one-gpu"><strong>Exercise</strong> - Testing <code class="docutils literal notranslate"><span class="pre">crunch.py</span></code> with One GPU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-speed-of-cpu-cores-and-a-gpu">Comparing the Speed of CPU Cores and a GPU</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-taches-via-les-portails">Analyse des tâches via les portails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-analysis-via-cluster-portals">Jobs Analysis via Cluster Portals</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimer-les-ressources-necessaires">Estimer les ressources nécessaires</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficacite-cible-d-une-tache">Efficacité cible d’une tâche</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-efficacite-des-taches"><strong>Exercice</strong> - Efficacité des tâches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-required-compute-resources">Estimating Required Compute Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target-efficiency-of-a-job">Target Efficiency of a Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-job-efficiency"><strong>Exercise</strong> - Job Efficiency</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapoler-les-ressources-necessaires">Extrapoler les ressources nécessaires</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taille-des-donnees-et-nombre-de-fichiers-a-traiter">Taille des données et nombre de fichiers à traiter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapolating-required-compute-resources">Extrapolating Required Compute Resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-size-and-number-of-files-to-process">Data Size and Number of Files to Process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-differences-entre-les-grappes-de-calcul">Principales différences entre les grappes de calcul</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#points-a-retenir">Points à retenir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-compute-clusters">Comparison of Compute Clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
             </nav>
         </div>
@@ -392,24 +392,27 @@ document.write(`
 <div id="searchbox"></div>
                 <article class="bd-article">
                   
-  <section class="tex2jax_ignore mathjax_ignore" id="choose-resources-wisely">
-<h1>Choose resources wisely<a class="headerlink" href="#choose-resources-wisely" title="Link to this heading">#</a></h1>
-<p>Il y a plusieurs <strong>ressources de calcul haute performance</strong> qui vous
-sont disponibles à l’Alliance de recherche numérique du Canada :</p>
+  <section class="tex2jax_ignore mathjax_ignore" id="use-resources-wisely">
+<h1>Use Resources Wisely<a class="headerlink" href="#use-resources-wisely" title="Link to this heading">#</a></h1>
+<p>With a Digital Research Alliance of Canada account, you have
+access to many <strong>high performance computing resources</strong>:</p>
 <ul class="simple">
-<li><p>Grappes de calcul :</p>
+<li><p>Compute clusters:</p>
 <ul>
 <li><p>Béluga, Cedar, Graham, Narval, Niagara</p></li>
 </ul>
 </li>
-<li><p>Stockage :</p>
+<li><p>Storage :</p>
 <ul>
-<li><p>Temporaire, projet, <em>nearline</em>, dépôt de données de recherche</p></li>
+<li><p>Temporary, project, <em>nearline</em></p></li>
 </ul>
 </li>
 </ul>
-<section id="objectif-construction-d-un-script-de-tache-slurm">
-<h2>Objectif - construction d’un script de tâche Slurm<a class="headerlink" href="#objectif-construction-d-un-script-de-tache-slurm" title="Link to this heading">#</a></h2>
+<p>While being large, but still limited in size, these resources
+should be used carefully by everyone in order to maximise the
+amount of produced scientific results for themselves and for others.</p>
+<section id="goal-writing-a-proper-job-script-for-slurm">
+<h2>Goal - Writing a Proper Job Script for Slurm<a class="headerlink" href="#goal-writing-a-proper-job-script-for-slurm" title="Link to this heading">#</a></h2>
 <p>Le principal objectif de ce chapitre est de vous permettre d’analyser
 vos besoins dans le but de <strong>déterminer les ressources nécessaires</strong>
 pour vos tâches de calcul.
@@ -427,7 +430,7 @@ options en entête seront lues par la commande de soumission de tâche
 processeurs réservés pour la tâche</p></li>
 </ul>
 <p>Par exemple : <a class="reference external" href="https://github.com/calculquebec/cip201-serveurs-calcul/blob/main/scripts/mpi-allo.sh"><code class="docutils literal notranslate"><span class="pre">scripts/mpi-allo.sh</span></code></a></p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>nano<span class="w"> </span>scripts/mpi-allo.sh<span class="w">  </span><span class="c1"># Ctrl+X pour quitter</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/mpi-allo.sh
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -443,8 +446,8 @@ processeurs réservés pour la tâche</p></li>
 <p>Notre documentation à cet effet débute à la page :
 <a class="reference external" href="https://docs.alliancecan.ca/wiki/Running_jobs/fr">Exécuter des tâches</a></p>
 </section>
-<section id="analyse-des-calculs-localement">
-<h2>Analyse des calculs localement<a class="headerlink" href="#analyse-des-calculs-localement" title="Link to this heading">#</a></h2>
+<section id="analysing-compute-jobs-on-your-computer">
+<h2>Analysing Compute Jobs on Your Computer<a class="headerlink" href="#analysing-compute-jobs-on-your-computer" title="Link to this heading">#</a></h2>
 <p>Lorsqu’une tâche est en cours d’exécution sur votre ordinateur,
 vous pouvez surveiller différentes métriques :</p>
 <ul class="simple">
@@ -452,8 +455,8 @@ vous pouvez surveiller différentes métriques :</p>
 <li><p>Mémoire-vive utilisée</p></li>
 <li><p>Accès au stockage</p></li>
 </ul>
-<section id="sous-windows">
-<h3>Sous Windows<a class="headerlink" href="#sous-windows" title="Link to this heading">#</a></h3>
+<section id="in-windows">
+<h3>In Windows<a class="headerlink" href="#in-windows" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://fr.wikipedia.org/wiki/Gestionnaire_des_t%C3%A2ches_Windows">Gestionnaire des tâches Windows</a></p></li>
 <li><p>Pour le faire afficher, on le trouve de deux manières :</p>
@@ -465,8 +468,8 @@ vous pouvez surveiller différentes métriques :</p>
 </ul>
 <p><img alt="Aperçu du gestionnaire des tâches Windows" src="_images/win-task-manager.png" /></p>
 </section>
-<section id="sous-mac-os">
-<h3>Sous Mac OS<a class="headerlink" href="#sous-mac-os" title="Link to this heading">#</a></h3>
+<section id="in-mac-os">
+<h3>In Mac OS<a class="headerlink" href="#in-mac-os" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p><a class="reference external" href="https://support.apple.com/fr-ca/guide/activity-monitor/actmntr1001/mac">Moniteur d’activité</a></p></li>
 <li><p>Pour le faire afficher :</p>
@@ -480,8 +483,8 @@ cette application</p></li>
 </ul>
 <p><img alt="Aperçu du moniteur d'activité Mac OS" src="https://help.apple.com/assets/5FDCF1894EB74318147EC0CF/5FDCF18A4EB74318147EC0D6/fr_CA/ad6337d66061aa27122e75521960fc5a.png" /></p>
 </section>
-<section id="sous-linux">
-<h3>Sous Linux<a class="headerlink" href="#sous-linux" title="Link to this heading">#</a></h3>
+<section id="in-linux">
+<h3>In Linux<a class="headerlink" href="#in-linux" title="Link to this heading">#</a></h3>
 <p>Dans un terminal Unix, on peut utiliser :</p>
 <ul class="simple">
 <li><p>La <a class="reference external" href="https://man7.org/linux/man-pages/man1/top.1.html">commande <code class="docutils literal notranslate"><span class="pre">top</span></code></a> (<code class="docutils literal notranslate"><span class="pre">q</span></code> pour quitter)</p></li>
@@ -493,8 +496,8 @@ cette application</p></li>
 <p><img alt="Capture de htop" src="_images/linux-htop.png" /></p>
 </section>
 </section>
-<section id="analyse-des-taches-sur-la-grappe-de-calcul">
-<h2>Analyse des tâches sur la grappe de calcul<a class="headerlink" href="#analyse-des-taches-sur-la-grappe-de-calcul" title="Link to this heading">#</a></h2>
+<section id="analysing-compute-jobs-on-clusters">
+<h2>Analysing Compute Jobs on Clusters<a class="headerlink" href="#analysing-compute-jobs-on-clusters" title="Link to this heading">#</a></h2>
 <p>On commence par <strong>se connecter au noeud frontal</strong> de la grappe :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>login1
 ...
@@ -517,11 +520,11 @@ est maintenant offerte sur les grappes nationales.
 </div>
 <p>Et pour voir l’état de la tâche, on utilise la
 <a class="reference external" href="https://slurm.schedmd.com/squeue.html">commande <code class="docutils literal notranslate"><span class="pre">squeue</span></code></a> :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># ou &#39;sq&#39;</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># or &#39;sq&#39;</span>
 </pre></div>
 </div>
-<section id="ressources-utilisees-d-une-tache-terminee">
-<h3>Ressources utilisées d’une tâche terminée<a class="headerlink" href="#ressources-utilisees-d-une-tache-terminee" title="Link to this heading">#</a></h3>
+<section id="resources-used-by-a-completed-job">
+<h3>Resources Used by a Completed Job<a class="headerlink" href="#resources-used-by-a-completed-job" title="Link to this heading">#</a></h3>
 <p>Avec la <a class="reference external" href="https://slurm.schedmd.com/sacct.html">commande <code class="docutils literal notranslate"><span class="pre">sacct</span></code></a>,
 on peut obtenir un tableau détaillé de nos tâches exécutées
 depuis minuit :</p>
@@ -538,31 +541,31 @@ et la mémoire-vives en fonction des quantités réservées.</p>
 </pre></div>
 </div>
 </section>
-<section id="ressources-utilisees-par-une-tache-cpu-en-cours">
-<h3>Ressources utilisées par une tâche CPU en cours<a class="headerlink" href="#ressources-utilisees-par-une-tache-cpu-en-cours" title="Link to this heading">#</a></h3>
+<section id="resources-used-by-a-running-job">
+<h3>Resources Used by a Running Job<a class="headerlink" href="#resources-used-by-a-running-job" title="Link to this heading">#</a></h3>
 <p>Étant donné un certain calcul matriciel dans le script Python
 <a class="reference external" href="https://github.com/calculquebec/cip201-serveurs-calcul/blob/main/scripts/crunch.py"><code class="docutils literal notranslate"><span class="pre">scripts/crunch.py</span></code></a> :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/crunch.py
 </pre></div>
 </div>
 <p>Lors d’une tâche interactive, on peut utiliser <code class="docutils literal notranslate"><span class="pre">top</span></code> et <code class="docutils literal notranslate"><span class="pre">htop</span></code> pour surveiller les ressources utilisées :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tâche interactive</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive job</span>
 salloc<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>8000M<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:15:0
 
 cat<span class="w"> </span>scripts/crunch.sh
 
-<span class="c1"># Exécution avec un processeur</span>
+<span class="c1"># Run with one CPU core</span>
 bash<span class="w"> </span>scripts/crunch.sh<span class="w"> </span>--cpu<span class="w"> </span><span class="m">1</span>
-top<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># q pour quitter</span>
+top<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># Press Q to quit</span>
 
-<span class="c1"># Exécution avec 4 processeurs</span>
+<span class="c1"># Run with four CPU cores</span>
 bash<span class="w"> </span>scripts/crunch.sh<span class="w"> </span>--cpu<span class="w"> </span><span class="m">4</span>
-htop<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># q pour quitter</span>
+htop<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># Press Q to quit</span>
 
-<span class="c1"># Comparer les résultats</span>
+<span class="c1"># Compare results</span>
 grep<span class="w"> </span>sec<span class="w"> </span>*.log
 
-<span class="nb">exit</span><span class="w">  </span><span class="c1"># Pour revenir à login1</span>
+<span class="nb">exit</span><span class="w">  </span><span class="c1"># To go back to login1</span>
 </pre></div>
 </div>
 <p>Si vous utilisez
@@ -570,8 +573,8 @@ grep<span class="w"> </span>sec<span class="w"> </span>*.log
 pour profiler votre programme, vous pouvez visualiser en temps
 réel la consommation de ressources dans l’onglet NV Dashboard:</p>
 <p><img alt="NV Dashboard CPU" src="_images/nv-dashboard_cpu.png" /></p>
-<section id="exercice-valider-le-comportement-d-une-tache-active">
-<h4><strong>Exercice</strong> - Valider le comportement d’une tâche active<a class="headerlink" href="#exercice-valider-le-comportement-d-une-tache-active" title="Link to this heading">#</a></h4>
+<section id="exercise-checking-resources-used-by-a-running-job">
+<h4><strong>Exercise</strong> - Checking Resources Used by a Running Job<a class="headerlink" href="#exercise-checking-resources-used-by-a-running-job" title="Link to this heading">#</a></h4>
 <p>Pendant que vos tâches sont actives, vous pouvez vous connecter par
 SSH aux noeuds de calcul correspondants afin de valider que
 l’exécution se passe bien :</p>
@@ -603,9 +606,9 @@ paramètres de la tâche de calcul</p></li>
 </ul>
 </section>
 </section>
-<section id="demo-ressources-utilisees-par-une-tache-gpu-en-cours">
-<h3>(Démo) Ressources utilisées par une tâche GPU en cours<a class="headerlink" href="#demo-ressources-utilisees-par-une-tache-gpu-en-cours" title="Link to this heading">#</a></h3>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Tâche interactive</span>
+<section id="demo-checking-resources-used-by-a-running-gpu-job">
+<h3>(Demo) Checking Resources Used by a Running GPU Job<a class="headerlink" href="#demo-checking-resources-used-by-a-running-gpu-job" title="Link to this heading">#</a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive job</span>
 salloc<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>8000M<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:15:0<span class="w"> </span>--gres<span class="o">=</span>gpu:1
 </pre></div>
 </div>
@@ -626,16 +629,16 @@ pour les détails</p></li>
 permettant de visualiser l’utilisation d’un ou plusieurs GPUs dans
 un terminal :</p></li>
 </ul>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Exécution avec un GPU</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run with one GPU</span>
 bash<span class="w"> </span>scripts/crunch.sh<span class="w"> </span>--gpu
-nvtop<span class="w">  </span><span class="c1"># q pour quitter</span>
+nvtop<span class="w">  </span><span class="c1"># Press Q to quit</span>
 </pre></div>
 </div>
 <p><img alt="Capture nvtop" src="https://raw.githubusercontent.com/Syllo/nvtop/master/screenshot/NVTOP_ex1.png" /></p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Regarder le résultat</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Check the result</span>
 grep<span class="w"> </span>sec<span class="w"> </span>tg.log
 
-<span class="nb">exit</span><span class="w">  </span><span class="c1"># Pour revenir à login1</span>
+<span class="nb">exit</span><span class="w">  </span><span class="c1"># To go back to login1</span>
 </pre></div>
 </div>
 <p>Si vous utilisez
@@ -643,18 +646,18 @@ grep<span class="w"> </span>sec<span class="w"> </span>tg.log
 pour profiler votre programme GPU, vous pouvez visualiser en temps
 réel la consommation de ressources dans l’onglet NV Dashboard:</p>
 <p><img alt="NV Dashboard GPU" src="_images/nv-dashboard_gpu.png" /></p>
-<section id="exercice-tester-crunch-avec-un-gpu">
-<h4><strong>Exercice</strong> - Tester Crunch avec un GPU<a class="headerlink" href="#exercice-tester-crunch-avec-un-gpu" title="Link to this heading">#</a></h4>
+<section id="exercise-testing-crunch-py-with-one-gpu">
+<h4><strong>Exercise</strong> - Testing <code class="docutils literal notranslate"><span class="pre">crunch.py</span></code> with One GPU<a class="headerlink" href="#exercise-testing-crunch-py-with-one-gpu" title="Link to this heading">#</a></h4>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w">    </span>scripts/crunch-sbatch-1gpu.sh
 sbatch<span class="w"> </span>scripts/crunch-sbatch-1gpu.sh
 
-squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># Pour vérifier l&#39;état de la tâche</span>
+squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># To check the status of the job</span>
 tail<span class="w"> </span>-24<span class="w"> </span><span class="k">$(</span>ls<span class="w"> </span>slurm-*<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1<span class="k">)</span>
 </pre></div>
 </div>
 </section>
-<section id="comparer-la-vitesse-cpu-vs-gpu">
-<h4>Comparer la vitesse CPU vs GPU<a class="headerlink" href="#comparer-la-vitesse-cpu-vs-gpu" title="Link to this heading">#</a></h4>
+<section id="comparing-the-speed-of-cpu-cores-and-a-gpu">
+<h4>Comparing the Speed of CPU Cores and a GPU<a class="headerlink" href="#comparing-the-speed-of-cpu-cores-and-a-gpu" title="Link to this heading">#</a></h4>
 <p>Avant d’utiliser massivement les GPUs d’une grappe de calcul, il faut
 tout d’abord que l’application ou l’algorithme puisse démontrer une
 “bonne performance” en utilisant plusieurs processeurs en parallèle.</p>
@@ -672,8 +675,8 @@ d’au moins cinq fois (5x) la vitesse de huit (8) à douze (12) processeurs.</p
 </ul>
 </section>
 </section>
-<section id="analyse-des-taches-via-les-portails">
-<h3>Analyse des tâches via les portails<a class="headerlink" href="#analyse-des-taches-via-les-portails" title="Link to this heading">#</a></h3>
+<section id="jobs-analysis-via-cluster-portals">
+<h3>Jobs Analysis via Cluster Portals<a class="headerlink" href="#jobs-analysis-via-cluster-portals" title="Link to this heading">#</a></h3>
 <p>Béluga et Narval ont chacun un portail pour l’analyse des tâches :</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://portail.beluga.calculquebec.ca/">https://portail.beluga.calculquebec.ca/</a></p></li>
@@ -681,10 +684,10 @@ d’au moins cinq fois (5x) la vitesse de huit (8) à douze (12) processeurs.</p
 </ul>
 </section>
 </section>
-<section id="estimer-les-ressources-necessaires">
-<h2>Estimer les ressources nécessaires<a class="headerlink" href="#estimer-les-ressources-necessaires" title="Link to this heading">#</a></h2>
-<section id="efficacite-cible-d-une-tache">
-<h3>Efficacité cible d’une tâche<a class="headerlink" href="#efficacite-cible-d-une-tache" title="Link to this heading">#</a></h3>
+<section id="estimating-required-compute-resources">
+<h2>Estimating Required Compute Resources<a class="headerlink" href="#estimating-required-compute-resources" title="Link to this heading">#</a></h2>
+<section id="target-efficiency-of-a-job">
+<h3>Target Efficiency of a Job<a class="headerlink" href="#target-efficiency-of-a-job" title="Link to this heading">#</a></h3>
 <p>À coût d’essais et erreurs avec une <strong>tâche de petite taille</strong>,
 la cible pour :</p>
 <ul class="simple">
@@ -714,8 +717,8 @@ Les valeurs à considérer sont :</p>
 <li><p><code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Utilized</span></code> et <code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Efficiency</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Utilized</span></code> et <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Efficiency</span></code></p></li>
 </ul>
-<section id="exercice-efficacite-des-taches">
-<h4><strong>Exercice</strong> - Efficacité des tâches<a class="headerlink" href="#exercice-efficacite-des-taches" title="Link to this heading">#</a></h4>
+<section id="exercise-job-efficiency">
+<h4><strong>Exercise</strong> - Job Efficiency<a class="headerlink" href="#exercise-job-efficiency" title="Link to this heading">#</a></h4>
 <p>Pour quelques-unes de vos tâches listées par la commande suivante :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>-X
 </pre></div>
@@ -726,8 +729,8 @@ Les valeurs à considérer sont :</p>
 </div>
 </section>
 </section>
-<section id="extrapoler-les-ressources-necessaires">
-<h3>Extrapoler les ressources nécessaires<a class="headerlink" href="#extrapoler-les-ressources-necessaires" title="Link to this heading">#</a></h3>
+<section id="extrapolating-required-compute-resources">
+<h3>Extrapolating Required Compute Resources<a class="headerlink" href="#extrapolating-required-compute-resources" title="Link to this heading">#</a></h3>
 <p>La question qui se pose :
 <strong>en augmentant la ou les dimensions du problème</strong>, quelles devraient
 être la durée du calcul et la consommation en mémoire-vive?
@@ -747,8 +750,8 @@ le comportement du programme sur une grappe de calcul.</p></li>
 deviner l’ordre du calcul principal.</p></li>
 </ul>
 </section>
-<section id="taille-des-donnees-et-nombre-de-fichiers-a-traiter">
-<h3>Taille des données et nombre de fichiers à traiter<a class="headerlink" href="#taille-des-donnees-et-nombre-de-fichiers-a-traiter" title="Link to this heading">#</a></h3>
+<section id="data-size-and-number-of-files-to-process">
+<h3>Data Size and Number of Files to Process<a class="headerlink" href="#data-size-and-number-of-files-to-process" title="Link to this heading">#</a></h3>
 <p>En plus du temps de calcul et de l’espace mémoire, il faut aussi
 considérer <strong>l’utilisation du stockage</strong>. Les valeurs à tenir compte :</p>
 <ol class="arabic simple">
@@ -814,8 +817,8 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 </div>
 </section>
 </section>
-<section id="principales-differences-entre-les-grappes-de-calcul">
-<h2>Principales différences entre les grappes de calcul<a class="headerlink" href="#principales-differences-entre-les-grappes-de-calcul" title="Link to this heading">#</a></h2>
+<section id="comparison-of-compute-clusters">
+<h2>Comparison of Compute Clusters<a class="headerlink" href="#comparison-of-compute-clusters" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>À propos des grappes :</p></li>
 </ul>
@@ -1100,8 +1103,8 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 <li><p>Stockage : le tout sera décrit au dernier chapitre.</p></li>
 </ul>
 </section>
-<section id="points-a-retenir">
-<h2>Points à retenir<a class="headerlink" href="#points-a-retenir" title="Link to this heading">#</a></h2>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Prévoir les <strong>paramètres d’une tâche Slurm</strong></p>
 <ul>
@@ -1193,38 +1196,38 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#objectif-construction-d-un-script-de-tache-slurm">Objectif - construction d’un script de tâche Slurm</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-calculs-localement">Analyse des calculs localement</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sous-windows">Sous Windows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sous-mac-os">Sous Mac OS</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#sous-linux">Sous Linux</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-writing-a-proper-job-script-for-slurm">Goal - Writing a Proper Job Script for Slurm</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-compute-jobs-on-your-computer">Analysing Compute Jobs on Your Computer</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-windows">In Windows</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-mac-os">In Mac OS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-linux">In Linux</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-taches-sur-la-grappe-de-calcul">Analyse des tâches sur la grappe de calcul</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ressources-utilisees-d-une-tache-terminee">Ressources utilisées d’une tâche terminée</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#ressources-utilisees-par-une-tache-cpu-en-cours">Ressources utilisées par une tâche CPU en cours</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-valider-le-comportement-d-une-tache-active"><strong>Exercice</strong> - Valider le comportement d’une tâche active</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-compute-jobs-on-clusters">Analysing Compute Jobs on Clusters</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-used-by-a-completed-job">Resources Used by a Completed Job</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#resources-used-by-a-running-job">Resources Used by a Running Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-checking-resources-used-by-a-running-job"><strong>Exercise</strong> - Checking Resources Used by a Running Job</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-ressources-utilisees-par-une-tache-gpu-en-cours">(Démo) Ressources utilisées par une tâche GPU en cours</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-tester-crunch-avec-un-gpu"><strong>Exercice</strong> - Tester Crunch avec un GPU</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparer-la-vitesse-cpu-vs-gpu">Comparer la vitesse CPU vs GPU</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#demo-checking-resources-used-by-a-running-gpu-job">(Demo) Checking Resources Used by a Running GPU Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-testing-crunch-py-with-one-gpu"><strong>Exercise</strong> - Testing <code class="docutils literal notranslate"><span class="pre">crunch.py</span></code> with One GPU</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#comparing-the-speed-of-cpu-cores-and-a-gpu">Comparing the Speed of CPU Cores and a GPU</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#analyse-des-taches-via-les-portails">Analyse des tâches via les portails</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#jobs-analysis-via-cluster-portals">Jobs Analysis via Cluster Portals</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimer-les-ressources-necessaires">Estimer les ressources nécessaires</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#efficacite-cible-d-une-tache">Efficacité cible d’une tâche</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-efficacite-des-taches"><strong>Exercice</strong> - Efficacité des tâches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#estimating-required-compute-resources">Estimating Required Compute Resources</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#target-efficiency-of-a-job">Target Efficiency of a Job</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-job-efficiency"><strong>Exercise</strong> - Job Efficiency</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapoler-les-ressources-necessaires">Extrapoler les ressources nécessaires</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#taille-des-donnees-et-nombre-de-fichiers-a-traiter">Taille des données et nombre de fichiers à traiter</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extrapolating-required-compute-resources">Extrapolating Required Compute Resources</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-size-and-number-of-files-to-process">Data Size and Number of Files to Process</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#principales-differences-entre-les-grappes-de-calcul">Principales différences entre les grappes de calcul</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#points-a-retenir">Points à retenir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#comparison-of-compute-clusters">Comparison of Compute Clusters</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
   </nav></div>
 
