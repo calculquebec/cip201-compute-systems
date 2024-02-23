@@ -348,23 +348,23 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-parallel">GNU Parallel</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pourquoi-pas-slurm">Pourquoi pas Slurm?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntaxe-de-la-commande-gnu-parallel">Syntaxe de la commande GNU Parallel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-d-utilisation">Modes d’utilisation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#une-seule-sequence-de-parametres">Une seule séquence de paramètres</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#combinaisons-de-parametres">Combinaisons de paramètres</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-limite-de-cas-en-paralleles">Nombre limité de cas en parallèles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-slurm">Why Not Slurm?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-parallel-command-syntax">GNU Parallel Command Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one-sequence-of-parameter-values">One Sequence of Parameter Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-combinations-of-parameter-values">Multiple Combinations of Parameter Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-the-number-of-simultaneous-processes">Limiting the Number of Simultaneous Processes</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-aligner-des-sequences-d-adn"><strong>Exercice</strong> - Aligner des séquences d’ADN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autres-outils">Autres outils</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-aligning-dna-sequences"><strong>Exercise</strong> - Aligning DNA Sequences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-tools">Other Tools</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vecteurs-de-taches">Vecteurs de tâches</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-vecteur-de-taches"><strong>Exercice</strong> - Vecteur de tâches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays">Job Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-job-arrays"><strong>Exercise</strong> - Job Arrays</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#points-a-retenir">Points à retenir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
             </nav>
         </div>
@@ -396,8 +396,8 @@ en gérant des processus au lieu de scripts de tâche.</p>
 <li><p><a class="reference external" href="https://www.gnu.org/software/parallel/parallel.html">Documentation officielle</a></p></li>
 <li><p><a class="reference external" href="https://www.gnu.org/software/parallel/parallel_tutorial.html">Tutoriel</a></p></li>
 </ul>
-<section id="pourquoi-pas-slurm">
-<h3>Pourquoi pas Slurm?<a class="headerlink" href="#pourquoi-pas-slurm" title="Link to this heading">#</a></h3>
+<section id="why-not-slurm">
+<h3>Why Not Slurm?<a class="headerlink" href="#why-not-slurm" title="Link to this heading">#</a></h3>
 <p>OK, mais pourquoi ne pas tout simplement soumettre
 <strong>des centaines de tâches à Slurm</strong>?</p>
 <ul class="simple">
@@ -424,24 +424,24 @@ le nombre de cas en simultané</p></li>
 en situation de fin hâtive de la tâche Slurm</p></li>
 </ul>
 </section>
-<section id="syntaxe-de-la-commande-gnu-parallel">
-<h3>Syntaxe de la commande GNU Parallel<a class="headerlink" href="#syntaxe-de-la-commande-gnu-parallel" title="Link to this heading">#</a></h3>
+<section id="gnu-parallel-command-syntax">
+<h3>GNU Parallel Command Syntax<a class="headerlink" href="#gnu-parallel-command-syntax" title="Link to this heading">#</a></h3>
 <p>Les éléments de base de la commande <code class="docutils literal notranslate"><span class="pre">parallel</span></code> :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span>options<span class="w"> </span>gabarit_de_commande<span class="w"> </span>:::<span class="w"> </span>liste<span class="w"> </span>de<span class="w"> </span>valeurs
 </pre></div>
 </div>
 <p>Voir :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>parallel<span class="w">  </span><span class="c1"># q pour quitter</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>parallel<span class="w">  </span><span class="c1"># Press Q to quit</span>
 </pre></div>
 </div>
 </section>
-<section id="modes-d-utilisation">
-<h3>Modes d’utilisation<a class="headerlink" href="#modes-d-utilisation" title="Link to this heading">#</a></h3>
-<section id="une-seule-sequence-de-parametres">
-<h4>Une seule séquence de paramètres<a class="headerlink" href="#une-seule-sequence-de-parametres" title="Link to this heading">#</a></h4>
+<section id="use-cases">
+<h3>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">#</a></h3>
+<section id="one-sequence-of-parameter-values">
+<h4>One Sequence of Parameter Values<a class="headerlink" href="#one-sequence-of-parameter-values" title="Link to this heading">#</a></h4>
 <p>Le paramètre changeant est donné via une paire d’<code class="docutils literal notranslate"><span class="pre">{}</span></code> :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>fichier<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span>
-<span class="c1"># parallel --citation  # S&#39;engager à citer les développeurs</span>
+<span class="c1"># parallel --citation  # Commit to citing developers</span>
 </pre></div>
 </div>
 <p>On peut réécrire la première commande en utilisant l’expansion des
@@ -451,8 +451,8 @@ parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </s
 </pre></div>
 </div>
 </section>
-<section id="combinaisons-de-parametres">
-<h4>Combinaisons de paramètres<a class="headerlink" href="#combinaisons-de-parametres" title="Link to this heading">#</a></h4>
+<section id="multiple-combinations-of-parameter-values">
+<h4>Multiple Combinations of Parameter Values<a class="headerlink" href="#multiple-combinations-of-parameter-values" title="Link to this heading">#</a></h4>
 <p><strong>a)</strong> Lorsqu’il y a <strong>plusieurs séquences de paramètres à combiner</strong>,
 on peut utiliser des paires d’accolades numérotées telles que
 <code class="docutils literal notranslate"><span class="pre">{1}</span></code>, <code class="docutils literal notranslate"><span class="pre">{2}</span></code>, etc. :</p>
@@ -491,8 +491,8 @@ sbatch<span class="w"> </span>scripts/prll-exec-cmd.sh
 </pre></div>
 </div>
 </section>
-<section id="nombre-limite-de-cas-en-paralleles">
-<h4>Nombre limité de cas en parallèles<a class="headerlink" href="#nombre-limite-de-cas-en-paralleles" title="Link to this heading">#</a></h4>
+<section id="limiting-the-number-of-simultaneous-processes">
+<h4>Limiting the Number of Simultaneous Processes<a class="headerlink" href="#limiting-the-number-of-simultaneous-processes" title="Link to this heading">#</a></h4>
 <p>Le paramètre <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> permet de forcer une limite sur le nombre de
 processus lancés à la fois. Par exemple, 8 cas avec 2 processus
 en simultané :</p>
@@ -501,8 +501,8 @@ en simultané :</p>
 </div>
 </section>
 </section>
-<section id="exercice-aligner-des-sequences-d-adn">
-<h3><strong>Exercice</strong> - Aligner des séquences d’ADN<a class="headerlink" href="#exercice-aligner-des-sequences-d-adn" title="Link to this heading">#</a></h3>
+<section id="exercise-aligning-dna-sequences">
+<h3><strong>Exercise</strong> - Aligning DNA Sequences<a class="headerlink" href="#exercise-aligning-dna-sequences" title="Link to this heading">#</a></h3>
 <p>Dans le dossier <code class="docutils literal notranslate"><span class="pre">donnees/</span></code>, vous devriez avoir plusieurs
 fichiers Fasta (<code class="docutils literal notranslate"><span class="pre">*.fa</span></code>) qui ont été créés au premier
 chapitre via le script de tâche <code class="docutils literal notranslate"><span class="pre">scripts/blastn-gen-seq.sh</span></code>.
@@ -540,8 +540,8 @@ ls<span class="w"> </span>donnees/res_prll/
 </pre></div>
 </div>
 </section>
-<section id="autres-outils">
-<h3>Autres outils<a class="headerlink" href="#autres-outils" title="Link to this heading">#</a></h3>
+<section id="other-tools">
+<h3>Other Tools<a class="headerlink" href="#other-tools" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>GLOST
 <a class="reference external" href="https://docs.alliancecan.ca/wiki/GLOST/fr">pour des calculs séquentiels seulement</a></p></li>
@@ -561,14 +561,14 @@ un lot de <strong>longs calculs parallèles de plus grande taille</strong>
 mieux utiliser les vecteurs de tâches.</p>
 </section>
 </section>
-<section id="vecteurs-de-taches">
-<h2>Vecteurs de tâches<a class="headerlink" href="#vecteurs-de-taches" title="Link to this heading">#</a></h2>
+<section id="job-arrays">
+<h2>Job Arrays<a class="headerlink" href="#job-arrays" title="Link to this heading">#</a></h2>
 <p>Dans le cas où un même programme doit être exécuté avec différentes
 combinaisons de paramètres, il y a moyen de soumettre un seul
 <a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_arrays/fr">vecteur de tâches</a>
 et de coder le script de tâche de telle sorte que les paramètres
 seront déterminés <strong>en fonction d’un indice unique</strong> du vecteur de tâches.</p>
-<p><img alt="Fonctionnement des vecteurs de tâches" src="_images/vecteur-taches.svg" /></p>
+<p><img alt="How Job Arrays Work" src="_images/job-arrays.svg" /></p>
 <p><strong>Pour soumettre un vecteur de tâches</strong> à l’ordonnanceur Slurm, que ce
 soit à la ligne de commande <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> ou dans l’entête <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code>
 du script de tâche, <strong>on doit ajouter l’option</strong> <code class="docutils literal notranslate"><span class="pre">--array=&lt;indices&gt;</span></code>.
@@ -585,22 +585,22 @@ Voir <a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_ar
 actuelle de l’indice unique associé à la tâche en cours d’exécution.
 Il s’agit d’un <strong>entier parmi</strong> les <code class="docutils literal notranslate"><span class="pre">&lt;indices&gt;</span></code>.</p>
 <p>La variable <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> peut être utilisée de différentes façons :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="o">=</span><span class="m">71</span><span class="w">  </span><span class="c1"># Pour émuler la variable</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="o">=</span><span class="m">71</span><span class="w">  </span><span class="c1"># To emulate the variable</span>
 
 <span class="nb">echo</span><span class="w"> </span>nom_fichier.<span class="nv">$SLURM_ARRAY_TASK_ID</span>
 <span class="nb">echo</span><span class="w"> </span>nom_dossier-<span class="nv">$SLURM_ARRAY_TASK_ID</span>
 </pre></div>
 </div>
-<p><img alt="Entier à coordonnées 2D" src="_images/n2r_c.svg" /></p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PARAM_R</span><span class="o">=</span><span class="k">$((</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Division entière</span>
-<span class="nv">PARAM_C</span><span class="o">=</span><span class="k">$((</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Modulo (reste de division)</span>
+<p><img alt="From One Integer to 2D Coordinates" src="_images/n2r_c.svg" /></p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PARAM_R</span><span class="o">=</span><span class="k">$((</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Integer division</span>
+<span class="nv">PARAM_C</span><span class="o">=</span><span class="k">$((</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Modulo (division remainder)</span>
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$PARAM_R</span><span class="w"> </span><span class="nv">$PARAM_C</span>
 
 head<span class="w"> </span>-n<span class="w"> </span><span class="k">$((</span><span class="nv">PARAM_R</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span><span class="w"> </span>param.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1
 </pre></div>
 </div>
-<section id="exercice-vecteur-de-taches">
-<h3><strong>Exercice</strong> - Vecteur de tâches<a class="headerlink" href="#exercice-vecteur-de-taches" title="Link to this heading">#</a></h3>
+<section id="exercise-job-arrays">
+<h3><strong>Exercise</strong> - Job Arrays<a class="headerlink" href="#exercise-job-arrays" title="Link to this heading">#</a></h3>
 <p>Lancez le vecteur de tâches :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/blastn-array.sh
 sbatch<span class="w"> </span>scripts/blastn-array.sh
@@ -621,8 +621,8 @@ soient traitées, avec une limite de <strong>quatre</strong> tâches à la fois.
 </ul>
 </section>
 </section>
-<section id="points-a-retenir">
-<h2>Points à retenir<a class="headerlink" href="#points-a-retenir" title="Link to this heading">#</a></h2>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>GNU Parallel</strong>
 <a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel/fr">pour lancer de multiples combinaisons de paramètres</a></p></li>
@@ -636,11 +636,11 @@ parallel<span class="w"> </span>--jobs<span class="w"> </span><span class="s1">&
 <ul class="simple">
 <li><p><strong>Vecteurs de tâches</strong> pour lancer une série de longues ou de larges tâches</p></li>
 </ul>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># $SLURM_ARRAY_TASK_ID aura une seule valeur dans ...</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># $SLURM_ARRAY_TASK_ID will have only one value of ...</span>
 sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">0</span>-7<span class="w">      </span><span class="c1"># [0, 7]</span>
 sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">1</span>,3,5,7<span class="w">  </span><span class="c1"># {1,3,5,7}</span>
 sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">1</span>-7:3<span class="w">    </span><span class="c1"># {1,4,7}</span>
-sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">0</span>-99%10<span class="w">  </span><span class="c1"># [0, 99], mais 10 tâches à la fois</span>
+sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">0</span>-99%10<span class="w">  </span><span class="c1"># [0, 99], but maximum 10 simultaneous jobs</span>
 </pre></div>
 </div>
 </section>
@@ -711,23 +711,23 @@ sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">0</
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-parallel">GNU Parallel</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pourquoi-pas-slurm">Pourquoi pas Slurm?</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#syntaxe-de-la-commande-gnu-parallel">Syntaxe de la commande GNU Parallel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#modes-d-utilisation">Modes d’utilisation</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#une-seule-sequence-de-parametres">Une seule séquence de paramètres</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#combinaisons-de-parametres">Combinaisons de paramètres</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#nombre-limite-de-cas-en-paralleles">Nombre limité de cas en parallèles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#why-not-slurm">Why Not Slurm?</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#gnu-parallel-command-syntax">GNU Parallel Command Syntax</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#use-cases">Use Cases</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#one-sequence-of-parameter-values">One Sequence of Parameter Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#multiple-combinations-of-parameter-values">Multiple Combinations of Parameter Values</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#limiting-the-number-of-simultaneous-processes">Limiting the Number of Simultaneous Processes</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-aligner-des-sequences-d-adn"><strong>Exercice</strong> - Aligner des séquences d’ADN</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#autres-outils">Autres outils</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-aligning-dna-sequences"><strong>Exercise</strong> - Aligning DNA Sequences</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#other-tools">Other Tools</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vecteurs-de-taches">Vecteurs de tâches</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-vecteur-de-taches"><strong>Exercice</strong> - Vecteur de tâches</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#job-arrays">Job Arrays</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-job-arrays"><strong>Exercise</strong> - Job Arrays</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#points-a-retenir">Points à retenir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
   </nav></div>
 
