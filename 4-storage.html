@@ -347,24 +347,24 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-differents-types-de-stockage">Les différents types de stockage</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home-votre-dossier-personnel"><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Votre dossier personnel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-tmpdir-votre-dossier-temporaire-local"><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> - Votre dossier temporaire local</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-votre-espace-reseau-temporaire"><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> - Votre espace réseau temporaire</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-espace-projet-partage"><code class="docutils literal notranslate"><span class="pre">/project</span></code> - Espace projet partagé</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearline-stockage-tres-longue-duree"><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Stockage très longue durée</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-types-of-storage">Different Types of Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home-your-personal-space"><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Your Personal Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-tmpdir-temporary-local-space"><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> - Temporary Local Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-temporary-network-space"><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> - Temporary Network Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-shared-project-space"><code class="docutils literal notranslate"><span class="pre">/project</span></code> - Shared Project Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearline-long-term-storage"><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Long Term Storage</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-du-stockage">Gestion du stockage</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cycle-de-vie-des-donnees-actives">Cycle de vie des données actives</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-de-cycle-de-vie-des-donnees">Exemple de cycle de vie des données</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-execution-d-un-pipeline"><strong>Exercice</strong> - Exécution d’un pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-management">Storage Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#life-cycle-of-active-data">Life Cycle of Active Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-the-life-cycle-of-active-data">Example of the Life Cycle of Active Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-running-a-small-pipeline"><strong>Exercise</strong> - Running a Small Pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-cas-de-donnees-inaccessibles">En cas de données inaccessibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-case-of-inaccessible-data">In Case of Inaccessible Data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#points-a-retenir">Points à retenir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
             </nav>
         </div>
@@ -397,8 +397,8 @@ document.write(`
 <p>Le but de ce chapitre est de considérer les principaux
 aspects nécessaires à la gestion des données actives
 sur les différents espaces de stockage disponibles.</p>
-<section id="les-differents-types-de-stockage">
-<h2>Les différents types de stockage<a class="headerlink" href="#les-differents-types-de-stockage" title="Link to this heading">#</a></h2>
+<section id="different-types-of-storage">
+<h2>Different Types of Storage<a class="headerlink" href="#different-types-of-storage" title="Link to this heading">#</a></h2>
 <p>Stockage accessible selon le type de noeud :
 noeud de <strong>connexion</strong> (ou interactif) ou
 noeud de <strong>calcul</strong> (CPU ou GPU) :</p>
@@ -433,9 +433,9 @@ noeud de <strong>calcul</strong> (CPU ou GPU) :</p>
 </tbody>
 </table>
 <p>À propos des <a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management/fr#Types_de_stockage">différents espaces de stockage</a>.</p>
-<section id="home-votre-dossier-personnel">
-<h3><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Votre dossier personnel<a class="headerlink" href="#home-votre-dossier-personnel" title="Link to this heading">#</a></h3>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w">  </span><span class="c1"># $HOME par défaut</span>
+<section id="home-your-personal-space">
+<h3><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Your Personal Space<a class="headerlink" href="#home-your-personal-space" title="Link to this heading">#</a></h3>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w">  </span><span class="c1"># $HOME by default</span>
 ls<span class="w"> </span>-a
 ls<span class="w"> </span>-la
 ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$HOME</span>
@@ -450,10 +450,10 @@ ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$HOME</spa
 </li>
 </ul>
 </section>
-<section id="slurm-tmpdir-votre-dossier-temporaire-local">
-<h3><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> - Votre dossier temporaire local<a class="headerlink" href="#slurm-tmpdir-votre-dossier-temporaire-local" title="Link to this heading">#</a></h3>
+<section id="slurm-tmpdir-temporary-local-space">
+<h3><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> - Temporary Local Space<a class="headerlink" href="#slurm-tmpdir-temporary-local-space" title="Link to this heading">#</a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$SLURM_TMPDIR</span>
-salloc<span class="w">  </span><span class="c1"># À partir de login1</span>
+salloc<span class="w">  </span><span class="c1"># From login1</span>
 
 ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$SLURM_TMPDIR</span>
 df<span class="w"> </span>-h<span class="w"> </span><span class="nv">$SLURM_TMPDIR</span>
@@ -480,8 +480,8 @@ utilisés à répétition lors d’un calcul</p></li>
 </li>
 </ul>
 </section>
-<section id="scratch-votre-espace-reseau-temporaire">
-<h3><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> - Votre espace réseau temporaire<a class="headerlink" href="#scratch-votre-espace-reseau-temporaire" title="Link to this heading">#</a></h3>
+<section id="scratch-temporary-network-space">
+<h3><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> - Temporary Network Space<a class="headerlink" href="#scratch-temporary-network-space" title="Link to this heading">#</a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>df<span class="w"> </span>-h<span class="w"> </span>/scratch
 ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$SCRATCH</span>
 </pre></div>
@@ -504,8 +504,8 @@ pour <code class="docutils literal notranslate"><span class="pre">/project</span
 </li>
 </ul>
 </section>
-<section id="project-espace-projet-partage">
-<h3><code class="docutils literal notranslate"><span class="pre">/project</span></code> - Espace projet partagé<a class="headerlink" href="#project-espace-projet-partage" title="Link to this heading">#</a></h3>
+<section id="project-shared-project-space">
+<h3><code class="docutils literal notranslate"><span class="pre">/project</span></code> - Shared Project Space<a class="headerlink" href="#project-shared-project-space" title="Link to this heading">#</a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>-ld<span class="w"> </span>/project
 ls<span class="w"> </span>-ld<span class="w"> </span>/project/def-sponsor00
 ls<span class="w"> </span>-l<span class="w"> </span>/project/def-sponsor00
@@ -542,8 +542,8 @@ ls<span class="w"> </span>-l<span class="w"> </span>/project/def-sponsor00
 </li>
 </ul>
 </section>
-<section id="nearline-stockage-tres-longue-duree">
-<h3><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Stockage très longue durée<a class="headerlink" href="#nearline-stockage-tres-longue-duree" title="Link to this heading">#</a></h3>
+<section id="nearline-long-term-storage">
+<h3><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Long Term Storage<a class="headerlink" href="#nearline-long-term-storage" title="Link to this heading">#</a></h3>
 <p>Interface de stockage sur disque :</p>
 <ul class="simple">
 <li><p>On peut voir les fichiers avec la commande <code class="docutils literal notranslate"><span class="pre">ls</span></code></p></li>
@@ -578,10 +578,10 @@ pendant plusieurs mois</strong></p></li>
 </ul>
 </section>
 </section>
-<section id="gestion-du-stockage">
-<h2>Gestion du stockage<a class="headerlink" href="#gestion-du-stockage" title="Link to this heading">#</a></h2>
-<section id="cycle-de-vie-des-donnees-actives">
-<h3>Cycle de vie des données actives<a class="headerlink" href="#cycle-de-vie-des-donnees-actives" title="Link to this heading">#</a></h3>
+<section id="storage-management">
+<h2>Storage Management<a class="headerlink" href="#storage-management" title="Link to this heading">#</a></h2>
+<section id="life-cycle-of-active-data">
+<h3>Life Cycle of Active Data<a class="headerlink" href="#life-cycle-of-active-data" title="Link to this heading">#</a></h3>
 <p>Avec le temps, les données s’accumulent. Il devient alors nécessaire de surveiller l’espace utilisé, de même que le nombre de fichiers qui s’y trouvent.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">du</span> <span class="o">-</span><span class="n">s</span> <span class="o">~</span>
 <span class="n">find</span> <span class="o">.</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">l</span>
@@ -607,8 +607,8 @@ des sous-répertoires pour mieux analyser l’espace utilisé.</p></li>
 </ul>
 <p>Avoir un bon plan de gestion des données actives permet de
 faciliter le ménage (suppression ou archivage de fichiers).</p>
-<section id="exemple-de-cycle-de-vie-des-donnees">
-<h4>Exemple de cycle de vie des données<a class="headerlink" href="#exemple-de-cycle-de-vie-des-donnees" title="Link to this heading">#</a></h4>
+<section id="example-of-the-life-cycle-of-active-data">
+<h4>Example of the Life Cycle of Active Data<a class="headerlink" href="#example-of-the-life-cycle-of-active-data" title="Link to this heading">#</a></h4>
 <p><img alt="Pipeline 1" src="_images/data-flow-1.png" /></p>
 <p>Description des différentes étapes :</p>
 <ul class="simple">
@@ -635,8 +635,8 @@ faciliter le ménage (suppression ou archivage de fichiers).</p>
 <li><p>Post-traitement - traiter tous les fichiers de résultats afin de ne garder que l’essentiel dans <code class="docutils literal notranslate"><span class="pre">/project</span></code></p></li>
 </ul>
 </section>
-<section id="exercice-execution-d-un-pipeline">
-<h4><strong>Exercice</strong> - Exécution d’un pipeline<a class="headerlink" href="#exercice-execution-d-un-pipeline" title="Link to this heading">#</a></h4>
+<section id="exercise-running-a-small-pipeline">
+<h4><strong>Exercise</strong> - Running a Small Pipeline<a class="headerlink" href="#exercise-running-a-small-pipeline" title="Link to this heading">#</a></h4>
 <ul class="simple">
 <li><p>Étudiez les scripts :</p>
 <ul>
@@ -667,8 +667,8 @@ faciliter le ménage (suppression ou archivage de fichiers).</p>
 </ul>
 </section>
 </section>
-<section id="en-cas-de-donnees-inaccessibles">
-<h3>En cas de données inaccessibles<a class="headerlink" href="#en-cas-de-donnees-inaccessibles" title="Link to this heading">#</a></h3>
+<section id="in-case-of-inaccessible-data">
+<h3>In Case of Inaccessible Data<a class="headerlink" href="#in-case-of-inaccessible-data" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>Une professeure ou un professeur peut demander à ce que les données soient supprimées</p></li>
 <li><p>Par contre, pour obtenir l’accès aux données, il faut avoir le consentement de la personne qui les a isolées (probablement involontairement)</p>
@@ -681,8 +681,8 @@ faciliter le ménage (suppression ou archivage de fichiers).</p>
 dès l’importation de données sur les grappes de calcul.</p>
 </section>
 </section>
-<section id="points-a-retenir">
-<h2>Points à retenir<a class="headerlink" href="#points-a-retenir" title="Link to this heading">#</a></h2>
+<section id="key-points">
+<h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Le système de fichiers <em>Lustre</em> est optimisé pour des gros fichiers
 (+10 Mo)</p>
@@ -771,24 +771,24 @@ il vaut mieux regrouper les données dans un fichier archive
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#les-differents-types-de-stockage">Les différents types de stockage</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home-votre-dossier-personnel"><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Votre dossier personnel</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-tmpdir-votre-dossier-temporaire-local"><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> - Votre dossier temporaire local</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-votre-espace-reseau-temporaire"><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> - Votre espace réseau temporaire</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-espace-projet-partage"><code class="docutils literal notranslate"><span class="pre">/project</span></code> - Espace projet partagé</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearline-stockage-tres-longue-duree"><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Stockage très longue durée</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#different-types-of-storage">Different Types of Storage</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#home-your-personal-space"><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Your Personal Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#slurm-tmpdir-temporary-local-space"><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> - Temporary Local Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#scratch-temporary-network-space"><code class="docutils literal notranslate"><span class="pre">$SCRATCH</span></code> - Temporary Network Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#project-shared-project-space"><code class="docutils literal notranslate"><span class="pre">/project</span></code> - Shared Project Space</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#nearline-long-term-storage"><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Long Term Storage</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#gestion-du-stockage">Gestion du stockage</a><ul class="nav section-nav flex-column">
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#cycle-de-vie-des-donnees-actives">Cycle de vie des données actives</a><ul class="nav section-nav flex-column">
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exemple-de-cycle-de-vie-des-donnees">Exemple de cycle de vie des données</a></li>
-<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercice-execution-d-un-pipeline"><strong>Exercice</strong> - Exécution d’un pipeline</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#storage-management">Storage Management</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#life-cycle-of-active-data">Life Cycle of Active Data</a><ul class="nav section-nav flex-column">
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#example-of-the-life-cycle-of-active-data">Example of the Life Cycle of Active Data</a></li>
+<li class="toc-h4 nav-item toc-entry"><a class="reference internal nav-link" href="#exercise-running-a-small-pipeline"><strong>Exercise</strong> - Running a Small Pipeline</a></li>
 </ul>
 </li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#en-cas-de-donnees-inaccessibles">En cas de données inaccessibles</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-case-of-inaccessible-data">In Case of Inaccessible Data</a></li>
 </ul>
 </li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#points-a-retenir">Points à retenir</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#key-points">Key Points</a></li>
 </ul>
   </nav></div>
 
