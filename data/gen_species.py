@@ -6,7 +6,7 @@ import sys
 
 def main():
     assert len(sys.argv) > 5, \
-        f'Usage: python {sys.argv[0]} suffixe nbMin nbMax longMin longMax'
+        f'Usage: python {sys.argv[0]} suffix nbMin nbMax minLen maxLen'
 
     suffixe = sys.argv[1]
     nb_seq_min = int(sys.argv[2])
@@ -16,10 +16,10 @@ def main():
     larg_fasta = 60
 
     random.seed(suffixe)
-    assert 0 < nb_seq_min <= nb_seq_max, 'Requis: 0 < nbMin <= nbMax'
-    assert nb_seq_max <= 9600, 'Requis: nbMax <= 9600'
-    assert 0 < long_min <= long_max, 'Requis: 0 < longMin <= longMax'
-    assert long_max <= 1600, 'Requis: longMax <= 1600'
+    assert 0 < nb_seq_min <= nb_seq_max, 'Required: 0 < nbMin <= nbMax'
+    assert nb_seq_max <= 9600, 'Required: nbMax <= 9600'
+    assert 0 < long_min <= long_max, 'Required: 0 < minLen <= maxLen'
+    assert long_max <= 1600, 'Required: maxLen <= 1600'
 
     nb_sequences = random.randint(nb_seq_min, nb_seq_max)
 

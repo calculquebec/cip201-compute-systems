@@ -10,7 +10,7 @@ def charger_especes():
     sequences = []
     seq_tmp = ''
 
-    fic_fasta = random.choice(sorted(glob.glob('./espece_*.fa')))
+    fic_fasta = random.choice(sorted(glob.glob('./species_*.fa')))
 
     with open(fic_fasta) as f:
         for ligne in f:
@@ -26,7 +26,7 @@ def charger_especes():
 
 def main():
     assert len(sys.argv) > 5, \
-        f'Usage: python {sys.argv[0]} suffixe nbMin nbMax longMin longMax'
+        f'Usage: python {sys.argv[0]} suffix nbMin nbMax minLen maxLen'
 
     suffixe = sys.argv[1]
     nb_seq_min = int(sys.argv[2])
@@ -36,10 +36,10 @@ def main():
     larg_fasta = 60
 
     random.seed(suffixe)
-    assert 0 < nb_seq_min <= nb_seq_max, 'Requis: 0 < nbMin <= nbMax'
-    assert nb_seq_max <= 38400, 'Requis: nbMax <= 38400'
-    assert 0 < long_min <= long_max, 'Requis: 0 < longMin <= longMax'
-    assert long_max <= 1600, 'Requis: longMax <= 1600'
+    assert 0 < nb_seq_min <= nb_seq_max, 'Required: 0 < nbMin <= nbMax'
+    assert nb_seq_max <= 38400, 'Required: nbMax <= 38400'
+    assert 0 < long_min <= long_max, 'Required: 0 < minLen <= maxLen'
+    assert long_max <= 1600, 'Required: maxLen <= 1600'
 
     seq_especes = charger_especes()
 
