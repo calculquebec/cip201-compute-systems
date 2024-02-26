@@ -12,26 +12,26 @@ if [ "$(basename $PWD)" = "scripts" ]; then
   cd ..
 fi
 
-FIC_CSV=temps_inv.csv
-echo 'temps,n' > $FIC_CSV
+CSV_FILE=time_inv.csv
+echo 'time,n' > $CSV_FILE
 
-valeurs_n=(192 384 768 1536 3072 6144)
+values_n=(192 384 768 1536 3072 6144)
 n_max=6144
 
-for n in ${valeurs_n[@]}; do
+for n in ${values_n[@]}; do
   # Réduire le nombre d'appels selon n
-  nb_appels=$((2 * n_max / n))
-  echo "Appel de inv_mat(${n}) ${nb_appels} fois ..."
+  nb_calls=$((2 * n_max / n))
+  echo "Calling inv_mat(${n}) ${nb_calls} times ..."
 
-  temps_total=0
-  for appel in $(seq 1 $nb_appels); do
-    temps_real=$(2>&1 time -p python scripts/inv-mat.py $n | grep real)
-    temps_sec=$(echo $temps_real | cut -d' ' -f2)
-    temps_total=$(echo $temps_total + $temps_sec | bc -l)
+  total_time=0
+  for call_id in $(seq 1 $nb_calls); do
+    real_time=$(2>&1 time -p python scripts/inv-mat.py $n | grep real)
+    time_sec=$(echo $real_time | cut -d' ' -f2)
+    total_time=$(echo $total_time + $time_sec | bc -l)
   done
 
-  temps_par_appel=$(echo $temps_total / $nb_appels | bc -l)
-  echo "$temps_par_appel,$n" > $FIC_CSV
+  time_per_call=$(echo $total_time / $nb_calls | bc -l)
+  echo "$time_per_call,$n" > $CSV_FILE
 done
 
-echo Terminé.
+echo Done.
