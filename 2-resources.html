@@ -429,8 +429,8 @@ options en entête seront lues par la commande de soumission de tâche
 <li><p>Les commandes Bash qui seront exécutées automatiquement sur des
 processeurs réservés pour la tâche</p></li>
 </ul>
-<p>Par exemple : <a class="reference external" href="https://github.com/calculquebec/cip201-serveurs-calcul/blob/main/scripts/mpi-allo.sh"><code class="docutils literal notranslate"><span class="pre">scripts/mpi-allo.sh</span></code></a></p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/mpi-allo.sh
+<p>For example : <a class="reference external" href="https://github.com/calculquebec/cip201-compute-systems/blob/main/scripts/mpi-hello.sh"><code class="docutils literal notranslate"><span class="pre">scripts/mpi-hello.sh</span></code></a></p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/mpi-hello.sh
 </pre></div>
 </div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="ch">#!/bin/bash</span>
@@ -443,8 +443,8 @@ processeurs réservés pour la tâche</p></li>
 <span class="n">mpirun</span> <span class="n">printenv</span> <span class="n">HOSTNAME</span> <span class="n">OMPI_COMM_WORLD_RANK</span> <span class="n">OMPI_COMM_WORLD_SIZE</span>
 </pre></div>
 </div>
-<p>Notre documentation à cet effet débute à la page :
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/Running_jobs/fr">Exécuter des tâches</a></p>
+<p>Our documentation about job scripts starts at this page:
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Running_jobs">Running jobs</a></p>
 </section>
 <section id="analysing-compute-jobs-on-your-computer">
 <h2>Analysing Compute Jobs on Your Computer<a class="headerlink" href="#analysing-compute-jobs-on-your-computer" title="Link to this heading">#</a></h2>
@@ -513,44 +513,44 @@ est maintenant offerte sur les grappes nationales.
 <li><p>Avec votre accès par défaut, vous avez un compte de calcul
 <code class="docutils literal notranslate"><span class="pre">def-*</span></code> de base qui vous permet de lancer des tâches.</p></li>
 </ul>
-<p>Pour soumettre un script de tâche, on utilise la
-<a class="reference external" href="https://slurm.schedmd.com/sbatch.html">commande <code class="docutils literal notranslate"><span class="pre">sbatch</span></code></a> :</p>
+<p>To submit a job script, we use the
+<a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command</a> :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>scripts/blastn-gen-seq.sh
 </pre></div>
 </div>
-<p>Et pour voir l’état de la tâche, on utilise la
-<a class="reference external" href="https://slurm.schedmd.com/squeue.html">commande <code class="docutils literal notranslate"><span class="pre">squeue</span></code></a> :</p>
+<p>And to monitor the status of a job, we use the
+<a class="reference external" href="https://slurm.schedmd.com/squeue.html"><code class="docutils literal notranslate"><span class="pre">squeue</span></code> command</a> :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span><span class="w">  </span><span class="c1"># or &#39;sq&#39;</span>
 </pre></div>
 </div>
 <section id="resources-used-by-a-completed-job">
 <h3>Resources Used by a Completed Job<a class="headerlink" href="#resources-used-by-a-completed-job" title="Link to this heading">#</a></h3>
-<p>Avec la <a class="reference external" href="https://slurm.schedmd.com/sacct.html">commande <code class="docutils literal notranslate"><span class="pre">sacct</span></code></a>,
-on peut obtenir un tableau détaillé de nos tâches exécutées
-depuis minuit :</p>
+<p>With the <a class="reference external" href="https://slurm.schedmd.com/sacct.html"><code class="docutils literal notranslate"><span class="pre">sacct</span></code> command</a>,
+we can get a detailed table of completed jobs since midnight:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>sacct
 </pre></div>
 </div>
-<p>Avec la <a class="reference external" href="https://docs.alliancecan.ca/wiki/Running_jobs/fr#T.C3.A2ches_termin.C3.A9es">commande <code class="docutils literal notranslate"><span class="pre">seff</span></code></a>,
-on peut obtenir un court rapport d’exécution d’une tâche.
-Ce rapport inclut une mesure du temps écoulé, une mesure du temps CPU
-et une mesure de consommation maximale de la mémoire-vive.
-Des valeurs d’efficacité en pourcentages sont données pour les cycles CPU
-et la mémoire-vives en fonction des quantités réservées.</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>seff<span class="w"> </span>&lt;No_tâche&gt;
+<p>With the <a class="reference external" href="https://docs.alliancecan.ca/wiki/Running_jobs#Completed_jobs"><code class="docutils literal notranslate"><span class="pre">seff</span></code> command</a>,
+we can get a short report about a single completed job.
+This report includes the elapsed time, the total
+CPU time and the maximum amount of memory used.
+Two values of efficiency are given in percentages of total CPU
+usage and maximum memory usage (compared to requested amounts).</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>seff<span class="w"> </span>&lt;Job_ID&gt;
 </pre></div>
 </div>
 </section>
 <section id="resources-used-by-a-running-job">
 <h3>Resources Used by a Running Job<a class="headerlink" href="#resources-used-by-a-running-job" title="Link to this heading">#</a></h3>
-<p>Étant donné un certain calcul matriciel dans le script Python
-<a class="reference external" href="https://github.com/calculquebec/cip201-serveurs-calcul/blob/main/scripts/crunch.py"><code class="docutils literal notranslate"><span class="pre">scripts/crunch.py</span></code></a> :</p>
+<p>Given some operations on a 3D matrix in the Python script
+<a class="reference external" href="https://github.com/calculquebec/cip201-compute-systems/blob/main/scripts/crunch.py"><code class="docutils literal notranslate"><span class="pre">scripts/crunch.py</span></code></a> :</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/crunch.py
 </pre></div>
 </div>
-<p>Lors d’une tâche interactive, on peut utiliser <code class="docutils literal notranslate"><span class="pre">top</span></code> et <code class="docutils literal notranslate"><span class="pre">htop</span></code> pour surveiller les ressources utilisées :</p>
+<p>While an interactive job is running, we can use the <code class="docutils literal notranslate"><span class="pre">top</span></code>
+and <code class="docutils literal notranslate"><span class="pre">htop</span></code> commands to monitor resources being used:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive job</span>
-salloc<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>8000M<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:15:0
+salloc<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>8000M<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:15:0
 
 cat<span class="w"> </span>scripts/crunch.sh
 
@@ -568,39 +568,37 @@ grep<span class="w"> </span>sec<span class="w"> </span>*.log
 <span class="nb">exit</span><span class="w">  </span><span class="c1"># To go back to login1</span>
 </pre></div>
 </div>
-<p>Si vous utilisez
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/JupyterHub/fr">JupyterHub</a>
-pour profiler votre programme, vous pouvez visualiser en temps
-réel la consommation de ressources dans l’onglet NV Dashboard:</p>
-<p><img alt="NV Dashboard CPU" src="_images/nv-dashboard_cpu.png" /></p>
+<p>If you use
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/JupyterHub">JupyterHub</a>
+to profile your codes, you can visualize in real time the
+use of the <em>Machine Resources</em> in the tab <em>GPU Dashboards</em>:</p>
+<p><img alt="GPU Dashboard for CPU" src="_images/nv-dashboard_cpu.png" /></p>
 <section id="exercise-checking-resources-used-by-a-running-job">
 <h4><strong>Exercise</strong> - Checking Resources Used by a Running Job<a class="headerlink" href="#exercise-checking-resources-used-by-a-running-job" title="Link to this heading">#</a></h4>
-<p>Pendant que vos tâches sont actives, vous pouvez vous connecter par
-SSH aux noeuds de calcul correspondants afin de valider que
-l’exécution se passe bien :</p>
+<p>While your job is running, you are allowed to connect by SSH to
+the corresponding compute node in order to monitor your processes:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/inv-mat.sh
 sbatch<span class="w"> </span>scripts/inv-mat.sh
 </pre></div>
 </div>
-<p>Voici les étapes de validation (à adapter pour l’exercice) :</p>
+<p>Here are some general steps for job monitoring and validation:</p>
 <ul class="simple">
-<li><p>Identification du ou des noeud(s) avec : <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p></li>
-<li><p>Connexion avec : <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">&lt;nom_noeud&gt;</span></code></p></li>
-<li><p>Inspection avec <code class="docutils literal notranslate"><span class="pre">top</span></code> et/ou <code class="docutils literal notranslate"><span class="pre">htop</span></code> :</p>
+<li><p>Identify on which node your job is running: <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p></li>
+<li><p>Connect to that node with: <code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">&lt;node_name&gt;</span></code></p></li>
+<li><p>Monitor the job execution with <code class="docutils literal notranslate"><span class="pre">top</span></code> or <code class="docutils literal notranslate"><span class="pre">htop</span></code>:</p>
 <ul>
-<li><p>Est-ce que vos processus s’exécutent avec un <strong>pourcentage de 100%?</strong></p></li>
-<li><p>Est-ce que vos processus parallèles s’exécutent avec un
-<strong>pourcentage de <span class="math notranslate nohighlight">\(n\)</span> * 100%</strong>, où <span class="math notranslate nohighlight">\(n\)</span> est le nombre de processeurs
-par tâche Slurm?</p></li>
-<li><p>Est-ce que le <strong>noeud de calcul</strong> semble pleinement utilisé?</p></li>
+<li><p>Are your processes running at <strong>near 100%?</strong>?</p></li>
+<li><p>Are your parallel processes running at <strong>near <span class="math notranslate nohighlight">\(n\)</span> * 100%</strong>,
+where <span class="math notranslate nohighlight">\(n\)</span> is the number of reserved CPU cores for the job?</p></li>
+<li><p>Does the <strong>compute node</strong> seem fully utilized?</p></li>
 </ul>
 </li>
-<li><p><strong>Inspection des résultats</strong></p>
+<li><p><strong>Inspect results</strong> in <code class="docutils literal notranslate"><span class="pre">time_inv.csv</span></code></p>
 <ul>
-<li><p>Identifier tout problème, s’il y a lieu; trouver la cause</p></li>
-<li><p>Corriger le code source, la compilation, le script ou les
-paramètres de la tâche de calcul</p></li>
-<li><p>Relancer la tâche de calcul et refaire les précédentes étapes</p></li>
+<li><p>Identify any problem. If any, find the cause</p></li>
+<li><p>Correct the code, the compilation, the script
+or the parameters used for the compute task</p></li>
+<li><p>Resubmit the compute job and redo the above validation steps</p></li>
 </ul>
 </li>
 </ul>
@@ -609,16 +607,15 @@ paramètres de la tâche de calcul</p></li>
 <section id="demo-checking-resources-used-by-a-running-gpu-job">
 <h3>(Demo) Checking Resources Used by a Running GPU Job<a class="headerlink" href="#demo-checking-resources-used-by-a-running-gpu-job" title="Link to this heading">#</a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Interactive job</span>
-salloc<span class="w"> </span>--ntasks-per-node<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>8000M<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:15:0<span class="w"> </span>--gres<span class="o">=</span>gpu:1
+salloc<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class="m">4</span><span class="w"> </span>--mem<span class="o">=</span>8000M<span class="w"> </span>--time<span class="o">=</span><span class="m">0</span>:15:0<span class="w"> </span>--gres<span class="o">=</span>gpu:1
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Pour Windows et Mac OS, il existe des outils propriétaires
-permettant de visualiser en temps réel l’utilisation du GPU.
-Veuillez vous référer au site Web du manufacturier de votre GPU
-pour les détails</p></li>
-<li><p>Sous Linux, il y a d’abord la
-<a class="reference external" href="https://developer.nvidia.com/nvidia-system-management-interface">commande <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></a></p></li>
+<li><p>For Windows and Mac OS, you can install proprietary software
+that allows real time visualization of the GPU utilization.
+Please check the documentation of the GPU manufacturer for details</p></li>
+<li><p>In Linux, with an NVIDIA GPU, we first have the
+<a class="reference external" href="https://developer.nvidia.com/nvidia-system-management-interface"><code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code> command</a></p></li>
 </ul>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>nvidia-smi
 </pre></div>
