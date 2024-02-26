@@ -15,5 +15,5 @@ sleep 2
 nvidia-smi
 wait
 
-echo Résultats:
+echo Results:
 grep sec t*.log
