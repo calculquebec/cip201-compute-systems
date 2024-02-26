@@ -1,18 +1,18 @@
 #!/bin/bash
 
-echo '- Aller à la racine du matériel ...'
+echo '- Going to the root of the material ...'
 cd $(dirname $0)/..
 CIP201=$PWD
 
-echo '- Importer les données dans $SCRATCH ...'
-mkdir -p $SCRATCH/donnees
-rsync -a donnees/ $SCRATCH/donnees/
+echo '- Copying the data to $SCRATCH ...'
+mkdir -p $SCRATCH/data
+rsync -a data/ $SCRATCH/data/
 cd $SCRATCH
 
-echo '- Soumettre la première tâche ...'
-TACHE1=$(sbatch --parsable $CIP201/scripts/blastn-gen-seq.sh)
-echo '  - Numéro de tâche initiale :' $TACHE1
+echo '- Submitting the first job ...'
+JOB1=$(sbatch --parsable $CIP201/scripts/blastn-gen-seq.sh)
+echo '  - First job ID:' $JOB1
 
-echo '- Soumettre la tâche dépendante ...'
-sbatch --dependency=afterok:$TACHE1 $CIP201/scripts/blastn-parallel.sh
+echo '- Submitting the second job that depends on the first one ...'
+sbatch --dependency=afterok:$JOB1 $CIP201/scripts/blastn-parallel.sh
 squeue -u $USER

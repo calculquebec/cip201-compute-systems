@@ -3,7 +3,6 @@
 #SBATCH --mem-per-cpu=2000M
 #SBATCH --time=0-00:20
 
-cd $SLURM_SUBMIT_DIR
 if [ "$(basename $PWD)" = "scripts" ]; then
   cd ..
 fi

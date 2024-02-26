@@ -4,18 +4,17 @@
 #SBATCH --mem-per-cpu=2000M
 #SBATCH --time=0-00:20
 
-cd $SLURM_SUBMIT_DIR
 if [ "$(basename $PWD)" = "scripts" ]; then
   cd ..
 fi
-cd donnees
+cd data
 
 module load gcc/9.3.0 blast+/2.12.0 seqkit/0.15.0
 
-INCONNUS=(M N O P Q R)
-INC_X="${INCONNUS[$SLURM_ARRAY_TASK_ID]}"
+UNKNOWNS=(M N O P Q R)
+UNK_X="${UNKNOWNS[$SLURM_ARRAY_TASK_ID]}"
 mkdir -p res_array
 
-parallel blastn -db espece_{1} \
-  -query chr_$INC_X.fa.split/chr_$INC_X.part_0{2}.fa \
-  '>' res_array/align_${INC_X}_{1}_{2} ::: A B C D ::: {01..10}
+parallel blastn -db species_{1} \
+  -query chr_$UNK_X.fa.split/chr_$UNK_X.part_0{2}.fa \
+  '>' res_array/align_${UNK_X}_{1}_{2} ::: A B C D ::: {01..10}
