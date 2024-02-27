@@ -399,40 +399,39 @@ aspects nécessaires à la gestion des données actives
 sur les différents espaces de stockage disponibles.</p>
 <section id="different-types-of-storage">
 <h2>Different Types of Storage<a class="headerlink" href="#different-types-of-storage" title="Link to this heading">#</a></h2>
-<p>Stockage accessible selon le type de noeud :
-noeud de <strong>connexion</strong> (ou interactif) ou
-noeud de <strong>calcul</strong> (CPU ou GPU) :</p>
+<p>The following table shows which types of storage space are accessible
+from <strong>login nodes</strong> and from <strong>compute nodes</strong> (CPU or GPU):</p>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head"><p>Stockage accessible</p></th>
-<th class="head text-center"><p>Noeud de connexion</p></th>
-<th class="head text-center"><p>Noeud de calcul</p></th>
+<tr class="row-odd"><th class="head"><p>Available Space</p></th>
+<th class="head text-center"><p>Login Nodes</p></th>
+<th class="head text-center"><p>Compute Nodes</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/home</span></code></p></td>
-<td class="text-center"><p>Oui</p></td>
-<td class="text-center"><p>Oui</p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p>Yes</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code></p></td>
-<td class="text-center"><p><strong>Non</strong></p></td>
-<td class="text-center"><p>Oui</p></td>
+<td class="text-center"><p><strong>No</strong></p></td>
+<td class="text-center"><p>Yes</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p></td>
-<td class="text-center"><p>Oui</p></td>
-<td class="text-center"><p>Oui</p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p>Yes</p></td>
 </tr>
 <tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">/project</span></code></p></td>
-<td class="text-center"><p>Oui</p></td>
-<td class="text-center"><p>Oui</p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p>Yes</p></td>
 </tr>
 <tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">/nearline</span></code></p></td>
-<td class="text-center"><p>Oui</p></td>
-<td class="text-center"><p><strong>Non</strong></p></td>
+<td class="text-center"><p>Yes</p></td>
+<td class="text-center"><p><strong>No</strong></p></td>
 </tr>
 </tbody>
 </table>
-<p>À propos des <a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management/fr#Types_de_stockage">différents espaces de stockage</a>.</p>
+<p>About the different <a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management#Storage_types">types of storage</a>.</p>
 <section id="home-your-personal-space">
 <h3><code class="docutils literal notranslate"><span class="pre">$HOME</span></code> - Your Personal Space<a class="headerlink" href="#home-your-personal-space" title="Link to this heading">#</a></h3>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w">  </span><span class="c1"># $HOME by default</span>
@@ -582,7 +581,8 @@ pendant plusieurs mois</strong></p></li>
 <h2>Storage Management<a class="headerlink" href="#storage-management" title="Link to this heading">#</a></h2>
 <section id="life-cycle-of-active-data">
 <h3>Life Cycle of Active Data<a class="headerlink" href="#life-cycle-of-active-data" title="Link to this heading">#</a></h3>
-<p>Avec le temps, les données s’accumulent. Il devient alors nécessaire de surveiller l’espace utilisé, de même que le nombre de fichiers qui s’y trouvent.</p>
+<p>As time passes, the data tend to accumulate. It eventually becomes
+necessary to monitor the used space, as well as the number of files.</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">du</span> <span class="o">-</span><span class="n">s</span> <span class="o">~</span>
 <span class="n">find</span> <span class="o">.</span> <span class="o">|</span> <span class="n">wc</span> <span class="o">-</span><span class="n">l</span>
 
@@ -591,22 +591,22 @@ pendant plusieurs mois</strong></p></li>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong><a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management/fr#Introduction">La commande <code class="docutils literal notranslate"><span class="pre">diskusage_report</span></code></a></strong>
-permet de générer un court rapport sur l’espace utilisé et le nombre
-de fichiers de chacun des espaces de stockage auxquels vous avez accès</p></li>
-<li><p>À chaque jour, un rapport de consommation de l’espace <code class="docutils literal notranslate"><span class="pre">/project</span></code> par utilisateur est produit :</p>
+<li><p><strong><a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management#Overview">The <code class="docutils literal notranslate"><span class="pre">diskusage_report</span></code> command</a></strong>
+generates a short report of the space used and the number
+of files inside each storage space you have access to</p></li>
+<li><p>Every day, a per-user storage usage report is created in <code class="docutils literal notranslate"><span class="pre">/project</span></code>:</p>
 <ul>
-<li><p>Sur Béluga : dans <code class="docutils literal notranslate"><span class="pre">/project/.stats/&lt;nom-allocation&gt;</span></code></p></li>
-<li><p>Sur Cedar et Narval : dans <code class="docutils literal notranslate"><span class="pre">/project/.stats/&lt;nom-allocation&gt;.json</span></code></p></li>
-<li><p><strong><a class="reference external" href="https://docs.alliancecan.ca/wiki/Diskusage_Explorer/fr">La commande <code class="docutils literal notranslate"><span class="pre">diskusage_explorer</span></code></a></strong>
-affiche un sommaire d’utilisation et permet de naviguer vers
-des sous-répertoires pour mieux analyser l’espace utilisé.</p></li>
-<li><p>Information disponible sur demande pour Graham et Niagara</p></li>
+<li><p>On Béluga: in <code class="docutils literal notranslate"><span class="pre">/project/.stats/&lt;allocation-name&gt;</span></code></p></li>
+<li><p>On Cedar and Narval: in <code class="docutils literal notranslate"><span class="pre">/project/.stats/&lt;allocation-name&gt;.json</span></code></p></li>
+<li><p><strong><a class="reference external" href="https://docs.alliancecan.ca/wiki/Diskusage_Explorer">The <code class="docutils literal notranslate"><span class="pre">diskusage_explorer</span></code> command</a></strong>
+shows a storage space usage summary and allows to
+navigate to sub-directories for further analysis</p></li>
+<li><p>Detailed information is available on demand for Graham and Niagara</p></li>
 </ul>
 </li>
 </ul>
-<p>Avoir un bon plan de gestion des données actives permet de
-faciliter le ménage (suppression ou archivage de fichiers).</p>
+<p>Having a good active data management plan makes it easier
+to delete or archive specific files in the long term.</p>
 <section id="example-of-the-life-cycle-of-active-data">
 <h4>Example of the Life Cycle of Active Data<a class="headerlink" href="#example-of-the-life-cycle-of-active-data" title="Link to this heading">#</a></h4>
 <p><img alt="Pipeline 1" src="_images/data-flow-1.svg" /></p>
@@ -638,32 +638,32 @@ faciliter le ménage (suppression ou archivage de fichiers).</p>
 <section id="exercise-running-a-small-pipeline">
 <h4><strong>Exercise</strong> - Running a Small Pipeline<a class="headerlink" href="#exercise-running-a-small-pipeline" title="Link to this heading">#</a></h4>
 <ul class="simple">
-<li><p>Étudiez les scripts :</p>
+<li><p>Check the code of these scripts:</p>
 <ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">scripts/blastn-pipeline.sh</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">scripts/blastn-traitement.sh</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scripts/blastn-postprocess.sh</span></code></p></li>
 </ul>
 </li>
-<li><p>Lancez le pipeline avec la commande :</p></li>
+<li><p>Run the pipeline with the following command:</p></li>
 </ul>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>scripts/blastn-pipeline.sh
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Surveillez les tâches avec <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p></li>
-<li><p>Trouver les fichiers créés dans :</p>
+<li><p>Monitor both jobs with <code class="docutils literal notranslate"><span class="pre">squeue</span> <span class="pre">-u</span> <span class="pre">$USER</span></code></p></li>
+<li><p>Find created files in:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">$SCRATCH/donnees</span></code> et</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">$SCRATCH/donnees/res_prll</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$SCRATCH/data</span></code> and</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">$SCRATCH/data/res_prll</span></code></p></li>
 </ul>
 </li>
-<li><p>Lancez le post-traitement avec la commande :</p></li>
+<li><p>Run the post-processing with the following command:</p></li>
 </ul>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>scripts/blastn-traitement.sh
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>bash<span class="w"> </span>scripts/blastn-postprocess.sh
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Trouvez le fichier TSV dans l’espace projet</p></li>
+<li><p>Find the TSV file in the project space</p></li>
 </ul>
 </section>
 </section>
