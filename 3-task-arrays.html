@@ -426,11 +426,11 @@ en situation de fin hâtive de la tâche Slurm</p></li>
 </section>
 <section id="gnu-parallel-command-syntax">
 <h3>GNU Parallel Command Syntax<a class="headerlink" href="#gnu-parallel-command-syntax" title="Link to this heading">#</a></h3>
-<p>Les éléments de base de la commande <code class="docutils literal notranslate"><span class="pre">parallel</span></code> :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span>options<span class="w"> </span>gabarit_de_commande<span class="w"> </span>:::<span class="w"> </span>liste<span class="w"> </span>de<span class="w"> </span>valeurs
+<p>The main basic elements of a <code class="docutils literal notranslate"><span class="pre">parallel</span></code> command are:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span>options<span class="w"> </span>command_template<span class="w"> </span>:::<span class="w"> </span>list<span class="w"> </span>of<span class="w"> </span>values
 </pre></div>
 </div>
-<p>Voir :</p>
+<p>See the manual page:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>man<span class="w"> </span>parallel<span class="w">  </span><span class="c1"># Press Q to quit</span>
 </pre></div>
 </div>
@@ -439,53 +439,44 @@ en situation de fin hâtive de la tâche Slurm</p></li>
 <h3>Use Cases<a class="headerlink" href="#use-cases" title="Link to this heading">#</a></h3>
 <section id="one-sequence-of-parameter-values">
 <h4>One Sequence of Parameter Values<a class="headerlink" href="#one-sequence-of-parameter-values" title="Link to this heading">#</a></h4>
-<p>Le paramètre changeant est donné via une paire d’<code class="docutils literal notranslate"><span class="pre">{}</span></code> :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>fichier<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span>
+<p>The default placeholder for the changing parameter is <code class="docutils literal notranslate"><span class="pre">{}</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>file<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="m">3</span><span class="w"> </span><span class="m">4</span>
 <span class="c1"># parallel --citation  # Commit to citing developers</span>
 </pre></div>
 </div>
-<p>On peut réécrire la première commande en utilisant l’expansion des
-accolades Bash <code class="docutils literal notranslate"><span class="pre">{a..b}</span></code> :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>fichier<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span>
-parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>fichier<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">01</span>..10<span class="o">}</span>
+<p>We can rewrite the above command by using the Bash expansion <code class="docutils literal notranslate"><span class="pre">{a..b}</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>file<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">1</span>..4<span class="o">}</span>
+parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>file<span class="o">{}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">01</span>..10<span class="o">}</span>
 </pre></div>
 </div>
 </section>
 <section id="multiple-combinations-of-parameter-values">
 <h4>Multiple Combinations of Parameter Values<a class="headerlink" href="#multiple-combinations-of-parameter-values" title="Link to this heading">#</a></h4>
-<p><strong>a)</strong> Lorsqu’il y a <strong>plusieurs séquences de paramètres à combiner</strong>,
-on peut utiliser des paires d’accolades numérotées telles que
-<code class="docutils literal notranslate"><span class="pre">{1}</span></code>, <code class="docutils literal notranslate"><span class="pre">{2}</span></code>, etc. :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>fichier<span class="o">{</span><span class="m">1</span><span class="o">}{</span><span class="m">2</span><span class="o">}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">01</span>..10<span class="o">}</span><span class="w"> </span>:::<span class="w"> </span>a<span class="w"> </span>b
+<p><strong>a)</strong> When you have <strong>multiple sequences of parameters to combine</strong>,
+you can use numbered placeholders, like <code class="docutils literal notranslate"><span class="pre">{1}</span></code> and <code class="docutils literal notranslate"><span class="pre">{2}</span></code>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="nb">echo</span><span class="w"> </span>file<span class="o">{</span><span class="m">1</span><span class="o">}{</span><span class="m">2</span><span class="o">}</span>.txt<span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">01</span>..10<span class="o">}</span><span class="w"> </span>:::<span class="w"> </span>a<span class="w"> </span>b
 </pre></div>
 </div>
-<p><strong>b)</strong> Dans le cas où on retrouve les <strong>combinaisons de paramètres
-dans un fichier texte</strong> :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># parallel echo {} ::: 3 5 7 ::: 4 6 8 &gt; param.txt</span>
-cat<span class="w"> </span>scripts/prll-creer-param.sh
-bash<span class="w"> </span>scripts/prll-creer-param.sh
-cat<span class="w"> </span>param.txt
+<p><strong>b)</strong> In the case where <strong>all combinations
+of parameters are in a text file</strong>:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/param.txt
 </pre></div>
 </div>
-<p>La commande <code class="docutils literal notranslate"><span class="pre">parallel</span></code> aura <code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">'</span> <span class="pre">'</span></code> pour spécifier le séparateur de
-paramètres dans <code class="docutils literal notranslate"><span class="pre">param.txt</span></code>, ainsi que l’argument <code class="docutils literal notranslate"><span class="pre">::::</span></code> pour
-spécifier ensuite ce nom de fichier :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># parallel -C &#39; &#39; echo &#39;{1}*{2} | bc &gt; prod_{1}x{2}&#39; :::: param.txt</span>
+<p>The <code class="docutils literal notranslate"><span class="pre">parallel</span></code> command will have <code class="docutils literal notranslate"><span class="pre">-C</span> <span class="pre">'</span> <span class="pre">'</span></code> to specify
+the separator between parameters in <code class="docutils literal notranslate"><span class="pre">scripts/param.txt</span></code>,
+and the <code class="docutils literal notranslate"><span class="pre">::::</span></code> argument to provide this filename:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># parallel -C &#39; &#39; echo &#39;$(({1}*{2}))&#39; :::: scripts/param.txt</span>
 cat<span class="w"> </span>scripts/prll-exec-param.sh
 sbatch<span class="w"> </span>scripts/prll-exec-param.sh
 </pre></div>
 </div>
-<p><strong>c)</strong> Si on préfère valider la liste des commandes générées avant de
-soumettre une tâche Slurm, on peut générer une <strong>liste de commandes
-dans un fichier texte</strong> :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># parallel -C &#39; &#39; echo &#39;echo {1}&quot;*&quot;{2} &quot;|&quot; bc &quot;&gt;&quot; prod_{1}x{2}&#39; :::: param.txt &gt; commandes.txt</span>
-cat<span class="w"> </span>scripts/prll-creer-cmd.sh
-bash<span class="w"> </span>scripts/prll-creer-cmd.sh
-cat<span class="w"> </span>commandes.txt
+<p><strong>c)</strong> If you prefer to validate a <strong>list of commands in a
+text file</strong> prior to their execution on the compute node:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/cmd.txt
 </pre></div>
 </div>
-<p>Et dans la tâche Slurm :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># parallel &lt; commandes.txt</span>
+<p>The job script will have a much simplified <code class="docutils literal notranslate"><span class="pre">parallel</span></code> command:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># parallel &lt; scripts/cmd.txt</span>
 cat<span class="w"> </span>scripts/prll-exec-cmd.sh
 sbatch<span class="w"> </span>scripts/prll-exec-cmd.sh
 </pre></div>
@@ -493,9 +484,9 @@ sbatch<span class="w"> </span>scripts/prll-exec-cmd.sh
 </section>
 <section id="limiting-the-number-of-simultaneous-processes">
 <h4>Limiting the Number of Simultaneous Processes<a class="headerlink" href="#limiting-the-number-of-simultaneous-processes" title="Link to this heading">#</a></h4>
-<p>Le paramètre <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> permet de forcer une limite sur le nombre de
-processus lancés à la fois. Par exemple, 8 cas avec 2 processus
-en simultané :</p>
+<p>The flag <code class="docutils literal notranslate"><span class="pre">--jobs</span></code> allows us to limit the number of
+simultaneous running processes. For example, we can
+have 8 tasks done with 2 simultaneous processes:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span>--jobs<span class="w"> </span><span class="m">2</span><span class="w"> </span><span class="s1">&#39;echo {} &amp;&amp; sleep 3&#39;</span><span class="w"> </span>:::<span class="w"> </span><span class="o">{</span><span class="m">1</span>..8<span class="o">}</span>
 </pre></div>
 </div>
@@ -503,40 +494,40 @@ en simultané :</p>
 </section>
 <section id="exercise-aligning-dna-sequences">
 <h3><strong>Exercise</strong> - Aligning DNA Sequences<a class="headerlink" href="#exercise-aligning-dna-sequences" title="Link to this heading">#</a></h3>
-<p>Dans le dossier <code class="docutils literal notranslate"><span class="pre">donnees/</span></code>, vous devriez avoir plusieurs
-fichiers Fasta (<code class="docutils literal notranslate"><span class="pre">*.fa</span></code>) qui ont été créés au premier
-chapitre via le script de tâche <code class="docutils literal notranslate"><span class="pre">scripts/blastn-gen-seq.sh</span></code>.
-<strong>Si ce n’est pas le cas</strong>, faites :</p>
+<p>In the directory <code class="docutils literal notranslate"><span class="pre">data/</span></code>, you should already have multiple
+Fasta files (<code class="docutils literal notranslate"><span class="pre">*.fa</span></code>) that were created in the previous
+chapter with the job script <code class="docutils literal notranslate"><span class="pre">scripts/blastn-gen-seq.sh</span></code>.
+<strong>If this is not the case</strong>, run the following:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>sbatch<span class="w"> </span>scripts/blastn-gen-seq.sh
 </pre></div>
 </div>
-<p>On devrait y retrouver :</p>
+<p>You should find:</p>
 <ul class="simple">
-<li><p>pour chaque espèce fictive A, B, C et D,
-un fichier de séquences d’ADN “connues”</p>
+<li><p>for each fictive species A, B, C and D,
+a file of “known” DNA sequences</p>
 <ul>
-<li><p>Ces fichiers sont convertis en bases de données Blast</p></li>
+<li><p>These files are converted into a Blast database</p></li>
 </ul>
 </li>
-<li><p>pour 16 espèces “inconnues” K à Z, des séquences d’ADN à aligner
-sur les séquences “connues” des espèces A, B, C et D</p></li>
+<li><p>for 16 “unknown” species K through Z, DNA sequences
+to align on “known” sequences of species A through D</p></li>
 </ul>
-<p>On cherche donc à calculer l’alignement de toutes les
-combinaisons <code class="docutils literal notranslate"><span class="pre">{A,B,C,D}</span></code> x <code class="docutils literal notranslate"><span class="pre">{K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}</span></code>,
-ce qui donne 64 combinaisons.
-Le script de tâche suivant utilise GNU Parallel pour calculer les
-différents cas avec 4 processeurs :</p>
+<p>We then want to compute the alignement of all
+combinations <code class="docutils literal notranslate"><span class="pre">{A,B,C,D}</span></code> x <code class="docutils literal notranslate"><span class="pre">{K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z}</span></code>,
+which makes 64 combinations to test.
+The following job script uses GNU Parallel in order
+to compute all combinations with 4 CPU cores:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/blastn-parallel.sh
 sbatch<span class="w"> </span>scripts/blastn-parallel.sh
 </pre></div>
 </div>
-<p>Pour surveiller l’état de la tâche :</p>
+<p>To monitor the status of the compute job:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
 ls<span class="w"> </span>donnees/res_prll/
 </pre></div>
 </div>
-<p>À la fin de la tâche, il est bon d’analyser les ressources utilisées :</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seff</span> <span class="o">&lt;</span><span class="n">jobid</span><span class="o">&gt;</span>
+<p>At the end of the job, check used resources:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">seff</span> <span class="o">&lt;</span><span class="n">job_id</span><span class="o">&gt;</span>
 </pre></div>
 </div>
 </section>
@@ -584,16 +575,18 @@ Voir <a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_ar
 <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> peut être utilisée pour retrouver la valeur
 actuelle de l’indice unique associé à la tâche en cours d’exécution.
 Il s’agit d’un <strong>entier parmi</strong> les <code class="docutils literal notranslate"><span class="pre">&lt;indices&gt;</span></code>.</p>
-<p>La variable <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> peut être utilisée de différentes façons :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="o">=</span><span class="m">71</span><span class="w">  </span><span class="c1"># To emulate the variable</span>
+<p>The variable <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> can be used in many ways.
+The below examples use <code class="docutils literal notranslate"><span class="pre">$N</span></code>, but <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>
+works the same in a job script:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">export</span><span class="w"> </span><span class="nv">N</span><span class="o">=</span><span class="m">71</span><span class="w">  </span><span class="c1"># Only required for this example</span>
 
-<span class="nb">echo</span><span class="w"> </span>nom_fichier.<span class="nv">$SLURM_ARRAY_TASK_ID</span>
-<span class="nb">echo</span><span class="w"> </span>nom_dossier-<span class="nv">$SLURM_ARRAY_TASK_ID</span>
+<span class="nb">echo</span><span class="w"> </span>file.<span class="nv">$N</span>
+<span class="nb">echo</span><span class="w"> </span>directory-<span class="nv">$N</span>
 </pre></div>
 </div>
 <p><img alt="From One Integer to 2D Coordinates" src="_images/n2r_c.svg" /></p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PARAM_R</span><span class="o">=</span><span class="k">$((</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Integer division</span>
-<span class="nv">PARAM_C</span><span class="o">=</span><span class="k">$((</span><span class="nv">SLURM_ARRAY_TASK_ID</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Modulo (division remainder)</span>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nv">PARAM_R</span><span class="o">=</span><span class="k">$((</span><span class="nv">N</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Integer division</span>
+<span class="nv">PARAM_C</span><span class="o">=</span><span class="k">$((</span><span class="nv">N</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Modulo (division remainder)</span>
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$PARAM_R</span><span class="w"> </span><span class="nv">$PARAM_C</span>
 
 head<span class="w"> </span>-n<span class="w"> </span><span class="k">$((</span><span class="nv">PARAM_R</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span><span class="w"> </span>param.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1
@@ -601,23 +594,23 @@ head<span class="w"> </span>-n<span class="w"> </span><span class="k">$((</span>
 </div>
 <section id="exercise-job-arrays">
 <h3><strong>Exercise</strong> - Job Arrays<a class="headerlink" href="#exercise-job-arrays" title="Link to this heading">#</a></h3>
-<p>Lancez le vecteur de tâches :</p>
+<p>Submit the job array:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/blastn-array.sh
 sbatch<span class="w"> </span>scripts/blastn-array.sh
 
 squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
 </pre></div>
 </div>
-<p>Après l’exécution des quatre tâches, inspectez les résultats :</p>
+<p>Once all four jobs are done, inspect the results:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>slurm-*_*.out
 ls<span class="w"> </span>-l<span class="w"> </span>donnees/res_array/
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>Corrigez le script de tâche</strong> pour que les 16 inconnues K à Z
-soient traitées, avec une limite de <strong>quatre</strong> tâches à la fois.</p></li>
-<li><p>Relancez le vecteur de tâches pour tester la correction.</p></li>
-<li><p>Utilisez la commande <code class="docutils literal notranslate"><span class="pre">seff</span></code> pour étudier une des 16 tâches.</p></li>
+<li><p><strong>Modify the job script</strong> to process all 16 unknowns K through Z,
+with a limit of <strong>four</strong> simultaneous processes per job</p></li>
+<li><p>Submit this modified job array</p></li>
+<li><p>Use the <code class="docutils literal notranslate"><span class="pre">seff</span></code> command to investigate one of the 16 jobs</p></li>
 </ul>
 </section>
 </section>
@@ -625,16 +618,17 @@ soient traitées, avec une limite de <strong>quatre</strong> tâches à la fois.
 <h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p><strong>GNU Parallel</strong>
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel/fr">pour lancer de multiples combinaisons de paramètres</a></p></li>
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel">to run multiple combinations of parameters</a></p></li>
 </ul>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="s1">&#39;gabarit_cmd({1})&#39;</span><span class="w"> </span>:::<span class="w"> </span>valeurs1
-parallel<span class="w"> </span><span class="s1">&#39;gabarit_cmd({1}, {2})&#39;</span><span class="w"> </span>:::<span class="w"> </span>valeurs1<span class="w"> </span>:::<span class="w"> </span>valeurs2
-parallel<span class="w"> </span>-C<span class="w"> </span>&lt;sep&gt;<span class="w"> </span><span class="s1">&#39;gabarit_cmd({1}, {2})&#39;</span><span class="w"> </span>::::<span class="w"> </span>paires_param.txt
-parallel<span class="w"> </span>--jobs<span class="w"> </span><span class="s1">&#39;N_cas_par_noeud&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>liste_commandes.txt
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>parallel<span class="w"> </span><span class="s1">&#39;command_template({1})&#39;</span><span class="w"> </span>:::<span class="w"> </span>values1
+parallel<span class="w"> </span><span class="s1">&#39;command_template({1}, {2})&#39;</span><span class="w"> </span>:::<span class="w"> </span>values1<span class="w"> </span>:::<span class="w"> </span>values2
+parallel<span class="w"> </span>-C<span class="w"> </span>&lt;sep&gt;<span class="w"> </span><span class="s1">&#39;command_template({1}, {2})&#39;</span><span class="w"> </span>::::<span class="w"> </span>param_pairs.txt
+parallel<span class="w"> </span>--jobs<span class="w"> </span><span class="s1">&#39;N_processes_per_node&#39;</span><span class="w"> </span>&lt;<span class="w"> </span>command_list.txt
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>Vecteurs de tâches</strong> pour lancer une série de longues ou de larges tâches</p></li>
+<li><p><strong>Job Arrays</strong>
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_arrays">to submit many long or large similar jobs</a></p></li>
 </ul>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># $SLURM_ARRAY_TASK_ID will have only one value of ...</span>
 sbatch<span class="w"> </span>--array<span class="o">=</span><span class="m">0</span>-7<span class="w">      </span><span class="c1"># [0, 7]</span>
