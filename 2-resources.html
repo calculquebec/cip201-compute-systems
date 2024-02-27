@@ -622,9 +622,8 @@ Please check the documentation of the GPU manufacturer for details</p></li>
 </div>
 <p><img alt="Capture nvidia-smi" src="_images/nvidia-smi.png" /></p>
 <ul class="simple">
-<li><p>Il existe aussi un projet <a class="reference external" href="https://github.com/Syllo/nvtop"><code class="docutils literal notranslate"><span class="pre">nvtop</span></code></a>
-permettant de visualiser l’utilisation d’un ou plusieurs GPUs dans
-un terminal :</p></li>
+<li><p>There is also the <a class="reference external" href="https://github.com/Syllo/nvtop"><code class="docutils literal notranslate"><span class="pre">nvtop</span></code></a> project
+that allows visualizing the use of one or many GPUs in a terminal:</p></li>
 </ul>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Run with one GPU</span>
 bash<span class="w"> </span>scripts/crunch.sh<span class="w"> </span>--gpu
@@ -638,11 +637,11 @@ grep<span class="w"> </span>sec<span class="w"> </span>tg.log
 <span class="nb">exit</span><span class="w">  </span><span class="c1"># To go back to login1</span>
 </pre></div>
 </div>
-<p>Si vous utilisez
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/JupyterHub/fr">JupyterHub</a>
-pour profiler votre programme GPU, vous pouvez visualiser en temps
-réel la consommation de ressources dans l’onglet NV Dashboard:</p>
-<p><img alt="NV Dashboard GPU" src="_images/nv-dashboard_gpu.png" /></p>
+<p>If you use
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/JupyterHub">JupyterHub</a>
+to profile your GPU software or code, you can visualize in real
+time the use of <em>GPU Resources</em> in the tab <em>GPU Dashboards</em>:</p>
+<p><img alt="GPU Dashboards for GPU" src="_images/nv-dashboard_gpu.png" /></p>
 <section id="exercise-testing-crunch-py-with-one-gpu">
 <h4><strong>Exercise</strong> - Testing <code class="docutils literal notranslate"><span class="pre">crunch.py</span></code> with One GPU<a class="headerlink" href="#exercise-testing-crunch-py-with-one-gpu" title="Link to this heading">#</a></h4>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w">    </span>scripts/crunch-sbatch-1gpu.sh
@@ -716,12 +715,12 @@ Les valeurs à considérer sont :</p>
 </ul>
 <section id="exercise-job-efficiency">
 <h4><strong>Exercise</strong> - Job Efficiency<a class="headerlink" href="#exercise-job-efficiency" title="Link to this heading">#</a></h4>
-<p>Pour quelques-unes de vos tâches listées par la commande suivante :</p>
+<p>For some of your jobs listed by the following command:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>sacct<span class="w"> </span>-X
 </pre></div>
 </div>
-<p>Obtenez le <code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Efficiency</span></code> et le <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Efficiency</span></code> via la commande :</p>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>seff<span class="w"> </span>&lt;No_tâche&gt;
+<p>Get the <code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Efficiency</span></code> and the <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Efficiency</span></code> with the command:</p>
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>seff<span class="w"> </span>&lt;Job_ID&gt;
 </pre></div>
 </div>
 </section>
@@ -795,21 +794,21 @@ aléatoires et nombreux</p></li>
 </li>
 </ul>
 <ul class="simple">
-<li><p><strong>Sous Linux</strong> et sur les <strong>grappes de calcul</strong> :</p>
+<li><p><strong>In Linux</strong> and on <strong>compute clusters</strong> :</p>
 <ul>
-<li><p>L’environnement graphique peut offrir le même genre d’outils,
-mais tout dépend de la distribution et du bureau.</p></li>
-<li><p>La commande <code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">-sb</span> <span class="pre">DOSSIER</span></code> (<code class="docutils literal notranslate"><span class="pre">s</span></code> : somme totale, <code class="docutils literal notranslate"><span class="pre">b</span></code> : taille
-apparente en octets) calcule récursivement et affiche la
-taille totale en octets. La taille apparente est celle qui
-importe lors d’un transfert ou d’une sauvegarde de données.</p></li>
-<li><p>La commande <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">DOSSIER</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code> compte récursivement
-et affiche le nombre de fichiers et de sous-dossiers.</p></li>
+<li><p>The graphical environment can provide similar tools, but
+it depends on the Linux distribution and the chosen desktop</p></li>
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">-sb</span> <span class="pre">DIRECTORY</span></code> (<code class="docutils literal notranslate"><span class="pre">s</span></code> for total sum, <code class="docutils literal notranslate"><span class="pre">b</span></code> for
+apparent size in bytes) recursively computes and displays
+the total size of used space in bytes. The apparent size is
+important to consider while transferring or backuping the data</p></li>
+<li><p>The command <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">DIRECTORY</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code> recursively counts
+and displays the number of files and subdirectories</p></li>
 </ul>
 </li>
 </ul>
-<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>du<span class="w"> </span>-sb<span class="w"> </span>donnees
-find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
+<div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>du<span class="w"> </span>-sb<span class="w"> </span>data
+find<span class="w"> </span>data<span class="w"> </span><span class="p">|</span><span class="w"> </span>wc<span class="w"> </span>-l
 </pre></div>
 </div>
 </section>
@@ -817,27 +816,27 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 <section id="comparison-of-compute-clusters">
 <h2>Comparison of Compute Clusters<a class="headerlink" href="#comparison-of-compute-clusters" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>À propos des grappes :</p></li>
+<li><p>About compute clusters:</p></li>
 </ul>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-right"><p></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga">Béluga</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar/fr">Cedar</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham/fr">Graham</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval">Narval</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara/fr">Niagara</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga/en">Béluga</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar">Cedar</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham">Graham</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval/en">Narval</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara">Niagara</a></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-right"><p><strong>Mise en production</strong></p></td>
-<td class="text-center"><p>Mars 2019</p></td>
-<td class="text-center"><p>Juin 2017</p></td>
-<td class="text-center"><p>Juin 2017</p></td>
-<td class="text-center"><p>Octobre 2021</p></td>
-<td class="text-center"><p>Avril 2018</p></td>
+<tr class="row-even"><td class="text-right"><p><strong>Availability</strong></p></td>
+<td class="text-center"><p>March 2019</p></td>
+<td class="text-center"><p>June 2017</p></td>
+<td class="text-center"><p>June 2017</p></td>
+<td class="text-center"><p>October 2021</p></td>
+<td class="text-center"><p>April 2018</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p><strong>Ville</strong></p></td>
+<tr class="row-odd"><td class="text-right"><p><strong>City</strong></p></td>
 <td class="text-center"><p>Montréal</p></td>
 <td class="text-center"><p>Burnaby</p></td>
 <td class="text-center"><p>Waterloo</p></td>
@@ -846,7 +845,7 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 </tr>
 <tr class="row-even"><td class="text-right"><p><strong>Province</strong></p></td>
 <td class="text-center"><p>Québec</p></td>
-<td class="text-center"><p>C.-B.</p></td>
+<td class="text-center"><p>B.C.</p></td>
 <td class="text-center"><p>Ontario</p></td>
 <td class="text-center"><p>Québec</p></td>
 <td class="text-center"><p>Ontario</p></td>
@@ -854,16 +853,16 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 </tbody>
 </table>
 <ul class="simple">
-<li><p>Nombre de processeurs (coeurs CPU) selon le cas :</p></li>
+<li><p>Number of CPU cores (number of nodes * CPU cores per node) :</p></li>
 </ul>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-right"><p>Processeur Intel/AMD</p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga">Béluga</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar/fr">Cedar</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham/fr">Graham</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval">Narval</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara/fr">Niagara</a></p></th>
+<tr class="row-odd"><th class="head text-right"><p>AMD/Intel CPU</p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga/en">Béluga</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar">Cedar</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham">Graham</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval/en">Narval</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara">Niagara</a></p></th>
 </tr>
 </thead>
 <tbody>
@@ -899,12 +898,12 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 </table>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-right"><p>Mémoire par proc.</p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga">Béluga</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar/fr">Cedar</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham/fr">Graham</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval">Narval</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara/fr">Niagara</a></p></th>
+<tr class="row-odd"><th class="head text-right"><p>Memory per core</p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga/en">Béluga</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar">Cedar</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham">Graham</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval/en">Narval</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara">Niagara</a></p></th>
 </tr>
 </thead>
 <tbody>
@@ -988,16 +987,17 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 </tbody>
 </table>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_GPUs_with_Slurm/fr">Nombre de GPUs</a> selon le cas :</p></li>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_GPUs_with_Slurm">Number of GPUs</a>
+per cluster:</p></li>
 </ul>
 <table class="table">
 <thead>
-<tr class="row-odd"><th class="head text-right"><p>Accélérateurs</p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga">Béluga</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar/fr">Cedar</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham/fr">Graham</a></p></th>
+<tr class="row-odd"><th class="head text-right"><p>GPU Model</p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga/en">Béluga</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar">Cedar</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham">Graham</a></p></th>
 <th class="head text-center"><p><a class="reference external" href="https://docs.scinet.utoronto.ca/index.php/Mist">Mist (Power9)</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval">Narval</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval/en">Narval</a></p></th>
 </tr>
 </thead>
 <tbody>
@@ -1046,65 +1046,65 @@ find<span class="w"> </span>donnees<span class="w"> </span><span class="p">|</sp
 </tbody>
 </table>
 <ul class="simple">
-<li><p>Réseau haute-performance et ordonnancement :</p></li>
+<li><p>Other specifications :</p></li>
 </ul>
 <table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-right"><p></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga">Béluga</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar/fr">Cedar</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham/fr">Graham</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval">Narval</a></p></th>
-<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara/fr">Niagara</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/B%C3%A9luga/en">Béluga</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Cedar">Cedar</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Graham">Graham</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Narval/en">Narval</a></p></th>
+<th class="head text-center"><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Niagara">Niagara</a></p></th>
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="text-right"><p>Connexion rapide</p></td>
+<tr class="row-even"><td class="text-right"><p>Fast network</p></td>
 <td class="text-center"><p>InfiniBand</p></td>
 <td class="text-center"><p>OmniPath</p></td>
 <td class="text-center"><p>InfiniBand</p></td>
 <td class="text-center"><p>InfiniBand</p></td>
 <td class="text-center"><p>InfiniBand</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p>Topologie</p></td>
-<td class="text-center"><p>En arbre</p></td>
-<td class="text-center"><p>En arbre</p></td>
-<td class="text-center"><p>En arbre</p></td>
-<td class="text-center"><p>En arbre</p></td>
+<tr class="row-odd"><td class="text-right"><p>Topology</p></td>
+<td class="text-center"><p>Fat Tree</p></td>
+<td class="text-center"><p>Fat Tree</p></td>
+<td class="text-center"><p>Fat Tree</p></td>
+<td class="text-center"><p>Fat Tree</p></td>
 <td class="text-center"><p>DragonFly+</p></td>
 </tr>
-<tr class="row-even"><td class="text-right"><p>Taille îlots (proc)</p></td>
-<td class="text-center"><p>640 à 1200</p></td>
-<td class="text-center"><p>1024 à 1536</p></td>
+<tr class="row-even"><td class="text-right"><p>Island size (core)</p></td>
+<td class="text-center"><p>640-1200</p></td>
+<td class="text-center"><p>1024-1536</p></td>
 <td class="text-center"><p>1024</p></td>
-<td class="text-center"><p>3072 à 3584</p></td>
+<td class="text-center"><p>3072-3584</p></td>
 <td class="text-center"><p>17280</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p>Facteur de blockage</p></td>
+<tr class="row-odd"><td class="text-right"><p>Blocking factor</p></td>
 <td class="text-center"><p>max 5:1</p></td>
 <td class="text-center"><p>max 2:1</p></td>
 <td class="text-center"><p>max 8:1</p></td>
 <td class="text-center"><p>max 4.7:1</p></td>
 <td class="text-center"><p>max 2:1</p></td>
 </tr>
-<tr class="row-even"><td class="text-right"><p>Granularité des tâches</p></td>
-<td class="text-center"><p>/proc /GPU</p></td>
-<td class="text-center"><p>/proc /GPU</p></td>
-<td class="text-center"><p>/proc /GPU</p></td>
-<td class="text-center"><p>/proc /GPU</p></td>
-<td class="text-center"><p>/noeud</p></td>
+<tr class="row-even"><td class="text-right"><p>Job granularity (by)</p></td>
+<td class="text-center"><p>core, GPU</p></td>
+<td class="text-center"><p>core, GPU</p></td>
+<td class="text-center"><p>core, GPU</p></td>
+<td class="text-center"><p>core, GPU</p></td>
+<td class="text-center"><p>node</p></td>
 </tr>
-<tr class="row-odd"><td class="text-right"><p>Durée maximale</p></td>
-<td class="text-center"><p>7 jours</p></td>
-<td class="text-center"><p>28 jours</p></td>
-<td class="text-center"><p>7 jours</p></td>
-<td class="text-center"><p>7 jours</p></td>
-<td class="text-center"><p>1 jour</p></td>
+<tr class="row-odd"><td class="text-right"><p>Maximum time</p></td>
+<td class="text-center"><p>7 days</p></td>
+<td class="text-center"><p>28 days</p></td>
+<td class="text-center"><p>7 days</p></td>
+<td class="text-center"><p>7 days</p></td>
+<td class="text-center"><p>1 day</p></td>
 </tr>
 </tbody>
 </table>
 <ul class="simple">
-<li><p>Stockage : le tout sera décrit au dernier chapitre.</p></li>
+<li><p>Storage: all will be described in the last chapter.</p></li>
 </ul>
 </section>
 <section id="key-points">
