@@ -368,35 +368,35 @@ document.write(`
 <h1>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h1>
 <section id="reminder-high-performance-computing">
 <h2>Reminder - High Performance Computing<a class="headerlink" href="#reminder-high-performance-computing" title="Link to this heading">#</a></h2>
-<p>Problématiques, solutions et préalables :</p>
 <ul class="simple">
-<li><p>Lorsqu’on doit lancer une <strong>grande quantité de calculs</strong>
-ou de <strong>traitements de données</strong>, l’utilisation d’une
-grappe de calcul haute performance devient nécessaire.</p></li>
-<li><p>Puisque les <strong>ressources</strong> sont <strong>partagées et en grande demande</strong>,
-chaque tâche doit être soumise à un ordonnanceur de tâches.</p></li>
-<li><p>Il devient donc nécessaire <strong>d’estimer à l’avance les ressources</strong>
-qui seront réservées lors de l’exécution d’un calcul.</p></li>
+<li><p>Initial problem: when we need to run a <strong>very large number of
+calculations</strong> or when we need to <strong>process large datasets</strong>,
+the use of a high performance computing cluster becomes necessary.</p></li>
+<li><p>Because <strong>resources are shared and in high demand</strong>,
+each compute job needs to be submitted to a job scheduler.</p></li>
+<li><p>It is then necessary to <strong>estimate in advance the
+resources required</strong> for the execution of a compute job.</p></li>
 </ul>
 </section>
 <section id="different-kinds-of-compute-tasks">
 <h2>Different Kinds of Compute Tasks<a class="headerlink" href="#different-kinds-of-compute-tasks" title="Link to this heading">#</a></h2>
 <p>Two categories of compute tasks working on the same problem:
 <img alt="Séquentiel vs parallel" src="_images/serial-vs-parallel.svg" /></p>
-<p>Parmi les tâches séquentielles, il existe aussi le calcul vectoriel.</p>
+<p>Within the set of serial tasks, we have the <em>vectorized computation</em>.</p>
 <ul class="simple">
-<li><p>Description : <strong>une même opération</strong> sur des vecteurs de données</p></li>
-<li><p>Ressources : un processeur moderne ou un <strong>accélérateur</strong> (GPU)</p></li>
+<li><p>Description: <strong>the same operation</strong> applied to vectors of data</p></li>
+<li><p>Resources: a modern processor or an <strong>accelerator</strong> (GPU)</p></li>
 </ul>
 <p><img alt="Vectorized Computation" src="_images/vectorized-computation.svg" /></p>
 <section id="data-parallelism">
 <h3>Data Parallelism<a class="headerlink" href="#data-parallelism" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Beaucoup de données à traiter de manière indépendante</p></li>
-<li><p><strong>Plusieurs tâches séquentielles en simultané</strong></p>
+<li><p>A lot of data to process independently</p></li>
+<li><p><strong>Multiple serial tasks running simultaneously</strong></p>
 <ul>
-<li><p>Utilisation de <strong>lots de tâches</strong></p></li>
-<li><p>Ou une tâche parallèle qui partitionne les données en différents problèmes à traiter sur des processeurs différents</p></li>
+<li><p>Probably using <strong>task arrays</strong></p></li>
+<li><p>Or a parallel task that splits the large problem in chunks of
+data to be processed independently on different processors</p></li>
 </ul>
 </li>
 </ul>
@@ -406,33 +406,33 @@ qui seront réservées lors de l’exécution d’un calcul.</p></li>
 <section id="questions-to-think-about">
 <h2>Questions to Think About<a class="headerlink" href="#questions-to-think-about" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Quel <strong>type de calculs</strong> effectuez-vous?</p>
+<li><p>What <strong>type of compute tasks</strong> do you run?</p>
 <ul>
-<li><p>Séquentiel ou parallel?</p>
+<li><p>Serial or parallel?</p>
 <ul>
-<li><p>Peut-être vectoriel?</p></li>
+<li><p>Perhaps vectorized?</p></li>
 </ul>
 </li>
-<li><p>Traiter beaucoup de petits fichiers ou quelques grands fichiers?</p></li>
+<li><p>Processing lots of small files or a few large files?</p></li>
 </ul>
 </li>
-<li><p>Quelles <strong>ressources</strong> vont être consommées?</p>
+<li><p>What <strong>resources</strong> will be used?</p>
 <ul>
-<li><p>Quelles ressources choisir?</p></li>
-<li><p>Quelle quantité de ressources?</p></li>
+<li><p>Which compute cluster should be chosen?</p></li>
+<li><p>What quantity of resource should be requested?</p></li>
 </ul>
 </li>
-<li><p>Comment <strong>planifier le stockage</strong> nécessaire?</p>
+<li><p>How to <strong>plan the storage space usage</strong> for your data?</p>
 <ul>
-<li><p>Avez-vous un plan de gestion des données actives?</p></li>
-<li><p>Qui devrait accéder à quoi?</p></li>
-<li><p>Quels espaces de stockage utiliser?</p></li>
-<li><p>Quand devriez-vous archiver certaines données?</p></li>
+<li><p>Do you have a data management plan for your active data?</p></li>
+<li><p>Who should be able to access what?</p></li>
+<li><p>Which storage spaces should be used?</p></li>
+<li><p>When should you archive some data?</p></li>
 </ul>
 </li>
-<li><p>Comment <strong>lancer des tâches</strong>?</p>
+<li><p>Finally, <strong>how to submit jobs optimally</strong>?</p>
 <ul>
-<li><p>Comment en faire le suivi?</p></li>
+<li><p>How to monitor and profile those jobs?</p></li>
 </ul>
 </li>
 </ul>
