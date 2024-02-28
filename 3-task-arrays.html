@@ -523,7 +523,7 @@ sbatch<span class="w"> </span>scripts/blastn-parallel.sh
 </div>
 <p>To monitor the status of the compute job:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</span>
-ls<span class="w"> </span>donnees/res_prll/
+ls<span class="w"> </span>data/res_prll/
 </pre></div>
 </div>
 <p>At the end of the job, check used resources:</p>
@@ -589,7 +589,7 @@ works the same in a job script:</p>
 <span class="nv">PARAM_C</span><span class="o">=</span><span class="k">$((</span><span class="nv">N</span><span class="w"> </span><span class="o">%</span><span class="w"> </span><span class="m">12</span><span class="k">))</span><span class="w">  </span><span class="c1"># Modulo (division remainder)</span>
 <span class="nb">echo</span><span class="w"> </span><span class="nv">$PARAM_R</span><span class="w"> </span><span class="nv">$PARAM_C</span>
 
-head<span class="w"> </span>-n<span class="w"> </span><span class="k">$((</span><span class="nv">PARAM_R</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span><span class="w"> </span>param.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1
+head<span class="w"> </span>-n<span class="w"> </span><span class="k">$((</span><span class="nv">PARAM_R</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="m">1</span><span class="k">))</span><span class="w"> </span>scripts/param.txt<span class="w"> </span><span class="p">|</span><span class="w"> </span>tail<span class="w"> </span>-1
 </pre></div>
 </div>
 <section id="exercise-job-arrays">
@@ -603,7 +603,7 @@ squeue<span class="w"> </span>-u<span class="w"> </span><span class="nv">$USER</
 </div>
 <p>Once all four jobs are done, inspect the results:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ls<span class="w"> </span>slurm-*_*.out
-ls<span class="w"> </span>-l<span class="w"> </span>donnees/res_array/
+ls<span class="w"> </span>-l<span class="w"> </span>data/res_array/
 </pre></div>
 </div>
 <ul class="simple">
