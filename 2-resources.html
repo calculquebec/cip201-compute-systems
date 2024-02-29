@@ -352,7 +352,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-writing-a-proper-job-script-for-slurm">Goal - Writing a Proper Job Script for Slurm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-compute-jobs-on-your-computer">Analysing Compute Jobs on Your Computer</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-windows">In Windows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-mac-os">In Mac OS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-macos">In macOS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-linux">In Linux</a></li>
 </ul>
 </li>
@@ -413,21 +413,23 @@ should be used carefully by everyone in order to maximise the
 amount of produced scientific results for themselves and for others.</p>
 <section id="goal-writing-a-proper-job-script-for-slurm">
 <h2>Goal - Writing a Proper Job Script for Slurm<a class="headerlink" href="#goal-writing-a-proper-job-script-for-slurm" title="Link to this heading">#</a></h2>
-<p>Le principal objectif de ce chapitre est de vous permettre d’analyser
-vos besoins dans le but de <strong>déterminer les ressources nécessaires</strong>
-pour vos tâches de calcul.
-Chaque tâche de calcul est définie par un <strong>script de tâche</strong> destiné à
-<a class="reference external" href="https://slurm.schedmd.com/documentation.html">l’ordonnanceur Slurm</a>.
-Typiquement écrit en commandes Bash, on y retrouve :</p>
+<p>The main goal of this chapter is to teach you how to
+analyze your compute tasks in order to <strong>determine the
+required resources</strong> to run tasks on compute clusters.
+Each compute task will eventually be defined
+in a <strong>job script</strong> to be submitted to the
+<a class="reference external" href="https://slurm.schedmd.com/documentation.html">Slurm scheduler</a>.
+Typically written in Bash commands, job scripts have:</p>
 <ul class="simple">
-<li><p>Le <a class="reference external" href="https://fr.wikipedia.org/wiki/Shebang">shebang</a> en toute
-première ligne. Par exemple : <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code></p></li>
-<li><p>Les options <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> en entête pour les besoins de la tâche. Les
-options en entête seront lues par la commande de soumission de tâche
-<a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code></a></p></li>
-<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Utiliser_des_modules">Chargement des modules</a> requis</p></li>
-<li><p>Les commandes Bash qui seront exécutées automatiquement sur des
-processeurs réservés pour la tâche</p></li>
+<li><p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Shebang_(Unix)">shebang</a>
+at the first line. For example: <code class="docutils literal notranslate"><span class="pre">#!/bin/bash</span></code></p></li>
+<li><p>A header of <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> options for the job’s requirements.
+These options will be parsed at submission time by the
+<a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command</a></p></li>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Utiliser_des_modules/en">Modules</a>
+loaded before running the compute task</p></li>
+<li><p>The Bash commands that will be executed
+automatically on the reserved resources for the job</p></li>
 </ul>
 <p>For example : <a class="reference external" href="https://github.com/calculquebec/cip201-compute-systems/blob/main/scripts/mpi-hello.sh"><code class="docutils literal notranslate"><span class="pre">scripts/mpi-hello.sh</span></code></a></p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span>scripts/mpi-hello.sh
@@ -448,70 +450,73 @@ processeurs réservés pour la tâche</p></li>
 </section>
 <section id="analysing-compute-jobs-on-your-computer">
 <h2>Analysing Compute Jobs on Your Computer<a class="headerlink" href="#analysing-compute-jobs-on-your-computer" title="Link to this heading">#</a></h2>
-<p>Lorsqu’une tâche est en cours d’exécution sur votre ordinateur,
-vous pouvez surveiller différentes métriques :</p>
+<p>While a compute task is running on your computer,
+you can monitor different metrics:</p>
 <ul class="simple">
-<li><p>Utilisation CPU (et GPU, s’il y a lieu)</p></li>
-<li><p>Mémoire-vive utilisée</p></li>
-<li><p>Accès au stockage</p></li>
+<li><p>CPU usage (and GPU usage, if applicable)</p></li>
+<li><p>Memory usage</p></li>
+<li><p>Storage access (IOPS, bandwidth)</p></li>
 </ul>
 <section id="in-windows">
 <h3>In Windows<a class="headerlink" href="#in-windows" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://fr.wikipedia.org/wiki/Gestionnaire_des_t%C3%A2ches_Windows">Gestionnaire des tâches Windows</a></p></li>
-<li><p>Pour le faire afficher, on le trouve de deux manières :</p>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Task_Manager_(Windows)">Windows Tasks Manager</a></p></li>
+<li><p>You can find it in two ways:</p>
 <ul>
-<li><p>Chercher <em>Gestionnaire des tâches</em> dans le menu Démarrer</p></li>
-<li><p>Raccourcis clavier Ctrl+Alt+Suppr</p></li>
+<li><p>Look for <em>Task Manager</em> in the Start menu, or</p></li>
+<li><p>With the keyboard shortcut Ctrl+Alt+Delete</p></li>
 </ul>
 </li>
 </ul>
-<p><img alt="Aperçu du gestionnaire des tâches Windows" src="_images/win-task-manager.png" /></p>
+<p><img alt="Windows 11 Task Manager screenshot" src="https://upload.wikimedia.org/wikipedia/en/a/ae/Windows_Task_Manager_screenshot.png" />
+<em>Image from Wikimedia</em></p>
 </section>
-<section id="in-mac-os">
-<h3>In Mac OS<a class="headerlink" href="#in-mac-os" title="Link to this heading">#</a></h3>
+<section id="in-macos">
+<h3>In macOS<a class="headerlink" href="#in-macos" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference external" href="https://support.apple.com/fr-ca/guide/activity-monitor/actmntr1001/mac">Moniteur d’activité</a></p></li>
-<li><p>Pour le faire afficher :</p>
+<li><p><a class="reference external" href="https://support.apple.com/en-ca/guide/activity-monitor/actmntr1001/mac">Activity Monitor</a></p></li>
+<li><p>To open the Activity Monitor:</p>
 <ul>
-<li><p>Démarrer l’application à partir des <em>Applications et Utilitaires</em> de Mac OS</p></li>
-<li><p>Sinon, utiliser le raccourcis clavier Commande+Espace et taper les
-premières lettres de “Moniteur d’activité” pour pouvoir sélectionner
-cette application</p></li>
+<li><p>Start it from the <em>Applications and Utilities</em> directory in macOS</p></li>
+<li><p>Otherwise, use the Command+Space shortcut and start typing
+the first letters of “Activity Monitor” to find and select it</p></li>
 </ul>
 </li>
 </ul>
-<p><img alt="Overview of Mac OS Activity Monitor" src="https://help.apple.com/assets/63FD404271C3B6058F265722/63FD404A71C3B6058F265732/en_US/07d6bea6dc9944ae58f6581297196752.png" /></p>
+<p><img alt="Overview of Mac OS Activity Monitor" src="https://help.apple.com/assets/63FD404271C3B6058F265722/63FD404A71C3B6058F265732/en_US/07d6bea6dc9944ae58f6581297196752.png" />
+<em>Image from Apple Support</em></p>
 </section>
 <section id="in-linux">
 <h3>In Linux<a class="headerlink" href="#in-linux" title="Link to this heading">#</a></h3>
-<p>Dans un terminal Unix, on peut utiliser :</p>
+<p>In a Linux terminal, you can use:</p>
 <ul class="simple">
-<li><p>La <a class="reference external" href="https://man7.org/linux/man-pages/man1/top.1.html">commande <code class="docutils literal notranslate"><span class="pre">top</span></code></a> (<code class="docutils literal notranslate"><span class="pre">q</span></code> pour quitter)</p></li>
+<li><p>The <a class="reference external" href="https://man7.org/linux/man-pages/man1/top.1.html"><code class="docutils literal notranslate"><span class="pre">top</span></code> command</a>
+(Press Q to quit)</p></li>
 </ul>
-<p><img alt="Capture de top" src="_images/linux-top.png" /></p>
+<p><img alt="Screenshot of top" src="_images/linux-top.png" /></p>
 <ul class="simple">
-<li><p>La <a class="reference external" href="https://man7.org/linux/man-pages/man1/htop.1.html">commande <code class="docutils literal notranslate"><span class="pre">htop</span></code></a> (<code class="docutils literal notranslate"><span class="pre">q</span></code> pour quitter)</p></li>
+<li><p>The <a class="reference external" href="https://man7.org/linux/man-pages/man1/htop.1.html"><code class="docutils literal notranslate"><span class="pre">htop</span></code> command</a>
+(Press Q to quit)</p></li>
 </ul>
-<p><img alt="Capture de htop" src="_images/linux-htop.png" /></p>
+<p><img alt="Screenshot of htop" src="_images/linux-htop.png" /></p>
 </section>
 </section>
 <section id="analysing-compute-jobs-on-clusters">
 <h2>Analysing Compute Jobs on Clusters<a class="headerlink" href="#analysing-compute-jobs-on-clusters" title="Link to this heading">#</a></h2>
-<p>On commence par <strong>se connecter au noeud frontal</strong> de la grappe :</p>
+<p>As a first step, we need to <strong>connect to the cluster</strong>:</p>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span>ssh<span class="w"> </span>login1
 ...
 </pre></div>
 </div>
 <p><strong>Notes</strong> :</p>
 <ul class="simple">
-<li><p>Pour accéder aux grappes de calcul en production, il vaut mieux
-utiliser <a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_SSH_keys_in_Linux/fr">une paire de clés SSH</a>.</p></li>
-<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Multifactor_authentication/fr">L’authentification multifacteur</a>
-est maintenant offerte sur les grappes nationales.
-<a class="reference external" href="https://www.youtube.com/watch?v=ciycOUbchl8">Vidéo d’introduction ici</a>.</p></li>
-<li><p>Avec votre accès par défaut, vous avez un compte de calcul
-<code class="docutils literal notranslate"><span class="pre">def-*</span></code> de base qui vous permet de lancer des tâches.</p></li>
+<li><p>To connect to the national systems in production, you better use a
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_SSH_keys_in_Linux">pair of SSH keys</a></p></li>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Multifactor_authentication">Multifactor authentication</a>
+is now available on national clusters. See the
+<a class="reference external" href="https://www.youtube.com/watch?v=qNsUsZ73HP0">introductory video here</a></p></li>
+<li><p>With your default access, you can use at least one
+<code class="docutils literal notranslate"><span class="pre">def-*</span></code> account, which allows you to submit compute jobs</p></li>
 </ul>
 <p>To submit a job script, we use the
 <a class="reference external" href="https://slurm.schedmd.com/sbatch.html"><code class="docutils literal notranslate"><span class="pre">sbatch</span></code> command</a> :</p>
@@ -611,7 +616,7 @@ salloc<span class="w"> </span>--cpus-per-task<span class="o">=</span><span class
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>For Windows and Mac OS, you can install proprietary software
+<li><p>For Windows and macOS, you can install proprietary software
 that allows real time visualization of the GPU utilization.
 Please check the documentation of the GPU manufacturer for details</p></li>
 <li><p>In Linux, with an NVIDIA GPU, we first have the
@@ -654,26 +659,29 @@ tail<span class="w"> </span>-24<span class="w"> </span><span class="k">$(</span>
 </section>
 <section id="comparing-the-speed-of-cpu-cores-and-a-gpu">
 <h4>Comparing the Speed of CPU Cores and a GPU<a class="headerlink" href="#comparing-the-speed-of-cpu-cores-and-a-gpu" title="Link to this heading">#</a></h4>
-<p>Avant d’utiliser massivement les GPUs d’une grappe de calcul, il faut
-tout d’abord que l’application ou l’algorithme puisse démontrer une
-“bonne performance” en utilisant plusieurs processeurs en parallèle.</p>
-<p>Quelques définitions :</p>
+<p>Before using GPUs on compute clusters, your application
+and its main algorithm must at first demonstrate a “good
+performance” while using regular CPU cores in parallel.</p>
+<p>A few definitions:</p>
 <ul class="simple">
-<li><p><strong>Temps écoulé</strong> = temps d’exécution total que l’on perçoit et non le temps CPU</p></li>
-<li><p><strong>Accélération</strong> = (temps avec un processeur) / (temps avec parallélisme)</p></li>
-<li><p><strong>Efficacité</strong> = (Accélération) / (nombre de processeurs)</p></li>
+<li><p><strong>Elapsed time</strong> = total perceived execution time, not the CPU time</p></li>
+<li><p><strong>Acceleration</strong> = (Elapsed time with <code class="docutils literal notranslate"><span class="pre">1</span></code> CPU core) /
+(Elapsed time with <code class="docutils literal notranslate"><span class="pre">N</span></code> CPU cores)</p></li>
+<li><p><strong>Efficiency</strong> = (Acceleration) / <code class="docutils literal notranslate"><span class="pre">N</span></code></p></li>
 </ul>
-<p>Le coût d’un noeud GPU étant cinq fois supérieur à celui d’un noeud
-régulier, l’utilisation d’un seul GPU doit permettre une accélération
-d’au moins cinq fois (5x) la vitesse de huit (8) à douze (12) processeurs.</p>
+<p>The acquisition cost of a GPU node being about five times
+the cost of a regular CPU node, the use of a single GPU
+must accelerate an application at least five times (5x)
+the speed of 8 to 16 cores in parallel to be worth it.</p>
 <ul class="simple">
-<li><p><strong>Accélération</strong> = (temps avec 8 à 12 processeurs) / (temps avec un accélérateur)</p></li>
+<li><p><strong>GPU Acceleration</strong> = (time with 8 to 16 CPU cores) /
+(time with a single GPU) &gt;= 5</p></li>
 </ul>
 </section>
 </section>
 <section id="jobs-analysis-via-cluster-portals">
 <h3>Jobs Analysis via Cluster Portals<a class="headerlink" href="#jobs-analysis-via-cluster-portals" title="Link to this heading">#</a></h3>
-<p>Béluga et Narval ont chacun un portail pour l’analyse des tâches :</p>
+<p>Béluga and Narval each have a great portal for job monitoring:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://portail.beluga.calculquebec.ca/">https://portail.beluga.calculquebec.ca/</a></p></li>
 <li><p><a class="reference external" href="https://portail.narval.calculquebec.ca/">https://portail.narval.calculquebec.ca/</a></p></li>
@@ -684,34 +692,34 @@ d’au moins cinq fois (5x) la vitesse de huit (8) à douze (12) processeurs.</p
 <h2>Estimating Required Compute Resources<a class="headerlink" href="#estimating-required-compute-resources" title="Link to this heading">#</a></h2>
 <section id="target-efficiency-of-a-job">
 <h3>Target Efficiency of a Job<a class="headerlink" href="#target-efficiency-of-a-job" title="Link to this heading">#</a></h3>
-<p>À coût d’essais et erreurs avec une <strong>tâche de petite taille</strong>,
-la cible pour :</p>
+<p>When testing with a <strong>short and small job</strong>, the target for:</p>
 <ul class="simple">
-<li><p><strong>Le calcul</strong> est une <strong>efficacité d’au moins 90%</strong></p>
+<li><p>The <strong>compute efficiency</strong> is <strong>at least 90%</strong></p>
 <ul>
-<li><p>Tâches séquentielles : il faut <strong>optimiser les accès aux données</strong></p>
+<li><p>Serial tasks: may need to <strong>optimize the access to the data</strong></p>
 <ul>
-<li><p>Utiliser adéquatement les différents types de stockage</p></li>
+<li><p>Use each type of storage spaces adequately (see chapter 4)</p></li>
 </ul>
 </li>
-<li><p>Tâches parallèles : il existe un <strong>nombre maximal de processeurs</strong>
-à utiliser pour respecter ce seuil :</p>
+<li><p>Parallel tasks: there is a <strong>maximum number
+of CPU cores</strong> that can reach this target:</p>
 <ul>
-<li><p>Principe de <a class="reference external" href="https://docs.alliancecan.ca/wiki/Scalability/fr">scalabilité</a>
-et <a class="reference external" href="https://fr.wikipedia.org/wiki/Loi_d%27Amdahl">Loi d’Amdahl</a></p></li>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Scalability">Scalability</a>
+principle and the
+<a class="reference external" href="https://en.wikipedia.org/wiki/Amdahl%27s_law">Amdahl’s law</a></p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p><strong>La mémoire-vive</strong> est une consommation <strong>de l’ordre de 80%</strong>
-de ce qui est demandé à l’ordonnanceur Slurm</p></li>
+<li><p>The <strong>memory usage</strong> should be around <strong>80%</strong>
+of what was requested to the Slurm scheduler</p></li>
 </ul>
-<p><strong>Rappel</strong> - vous pouvez obtenir ces pourcentages via les commandes
-<code class="docutils literal notranslate"><span class="pre">sacct</span> <span class="pre">-X</span></code> (surtout pour obtenir les numéros de tâches) et <code class="docutils literal notranslate"><span class="pre">seff</span></code>.
-Les valeurs à considérer sont :</p>
+<p><strong>Reminder</strong> - you can get these percentages with the commands
+<code class="docutils literal notranslate"><span class="pre">sacct</span> <span class="pre">-X</span></code> (mainly to get job IDs) and <code class="docutils literal notranslate"><span class="pre">seff</span></code>.
+The important values are:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Utilized</span></code> et <code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Efficiency</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Utilized</span></code> et <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Efficiency</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Utilized</span></code> and <code class="docutils literal notranslate"><span class="pre">CPU</span> <span class="pre">Efficiency</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Utilized</span></code> and <code class="docutils literal notranslate"><span class="pre">Memory</span> <span class="pre">Efficiency</span></code></p></li>
 </ul>
 <section id="exercise-job-efficiency">
 <h4><strong>Exercise</strong> - Job Efficiency<a class="headerlink" href="#exercise-job-efficiency" title="Link to this heading">#</a></h4>
@@ -727,81 +735,75 @@ Les valeurs à considérer sont :</p>
 </section>
 <section id="extrapolating-required-compute-resources">
 <h3>Extrapolating Required Compute Resources<a class="headerlink" href="#extrapolating-required-compute-resources" title="Link to this heading">#</a></h3>
-<p>La question qui se pose :
-<strong>en augmentant la ou les dimensions du problème</strong>, quelles devraient
-être la durée du calcul et la consommation en mémoire-vive?
-<a class="reference external" href="https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes">Une analyse détaillée du code</a>
-n’est pas nécessaire pour déterminer le type de calcul qui est fait :</p>
+<p><strong>If you increase the size of the problem</strong>, what
+should be the expected compute time and memory usage?
+<a class="reference external" href="https://en.wikipedia.org/wiki/Analysis_of_algorithms">A detailed code analysis</a>
+is not necessary to make that approximation:</p>
 <ul class="simple">
-<li><p>Vous pouvez <strong>mesurer le temps d’exécution</strong> (avec la
-commande <code class="docutils literal notranslate"><span class="pre">time</span></code>) en fonction de la taille du problème.
-En extrapolant les résultats, il serait possible de prévoir
-le comportement du programme sur une grappe de calcul.</p></li>
+<li><p>You can <strong>measure the execution time</strong> (with the
+<code class="docutils literal notranslate"><span class="pre">time</span></code> command) in function of the size of the problem.
+By extrapolating the results, you should be able to
+predict the program behavior on the compute cluster.</p></li>
 </ul>
 <div class="highlight-Bash notranslate"><div class="highlight"><pre><span></span><span class="nb">time</span><span class="w"> </span>-p<span class="w"> </span>sleep<span class="w"> </span><span class="m">2</span>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Vous pouvez considérer le <strong>format des données en entrées</strong> pour
-deviner l’ordre du calcul principal.</p></li>
+<li><p>You can also considerate the <strong>shape of the input data</strong>
+in order to guess the order of the main calculation.</p></li>
 </ul>
 </section>
 <section id="data-size-and-number-of-files-to-process">
 <h3>Data Size and Number of Files to Process<a class="headerlink" href="#data-size-and-number-of-files-to-process" title="Link to this heading">#</a></h3>
-<p>En plus du temps de calcul et de l’espace mémoire, il faut aussi
-considérer <strong>l’utilisation du stockage</strong>. Les valeurs à tenir compte :</p>
+<p>On top of the compute time and memory usage, you must also considerate
+the <strong>storage space usage</strong>. Values to take into account are:</p>
 <ol class="arabic simple">
-<li><p>La <strong>quantité</strong> en octets (ou Go)</p>
+<li><p>The <strong>quantity</strong> in bytes (or GB)</p>
 <ul class="simple">
-<li><p>Peut servir à <strong>estimer</strong> l’utilisation de la mémoire-vive</p></li>
-<li><p>Tenir compte de la taille du <strong>stockage local rapide</strong> pour
-optimiser les accès aux fichiers</p></li>
+<li><p>Can be used to <strong>estimate</strong> the memory usage</p></li>
+<li><p>Take into account the size limit of the
+<strong>local storage</strong> for optimized file access</p></li>
 </ul>
 </li>
-<li><p>Le <strong>nombre</strong> de fichiers à traiter</p>
+<li><p>The <strong>number</strong> of files to process</p>
 <ul class="simple">
-<li><p>Considérer le <strong>parallélisme de données</strong></p></li>
-<li><p><strong>Multiplier la durée moyenne</strong> du traitement d’un fichier par
-le nombre de fichiers pour estimer la durée d’une tâche</p></li>
-<li><p><strong>Multiplier la taille moyenne</strong> des fichiers par leur nombre
-pour estimer l’espace en mémoire-vive (par exemple : des images)</p></li>
-<li><p>Utiliser le stockage rapide pour <strong>optimiser les accès</strong>
-aléatoires et nombreux</p></li>
+<li><p><strong>Data parallelism</strong> could be a solution</p></li>
+<li><p><strong>Multiply the average run time</strong> needed to process a file by
+the total number of files to get an approximate job time limit</p></li>
+<li><p><strong>Multiply the average size of files</strong> by their number to
+estimate the space needed in memory (example: loading images)</p></li>
+<li><p>Use the local storage to <strong>optimize
+repetitive and random accesses</strong></p></li>
 </ul>
 </li>
 </ol>
-<p>Pour obtenir le nombre de fichiers et la taille totale :</p>
+<p>To get the number of files and the total size:</p>
 <ul class="simple">
-<li><p><strong>Sous Windows</strong> : dans l’explorateur Windows (raccourcis clavier : Windows + E)</p>
+<li><p><strong>In Windows</strong>: in Windows Explorer (keyboard shorcut: Windows + E)</p>
 <ul>
-<li><p>Sélectionner un dossier ou plusieurs fichiers</p></li>
-<li><p>Bouton droit de la souris -&gt; <em>Propriétés</em></p></li>
+<li><p>Select one directory or multiple files</p></li>
+<li><p>Right-click -&gt; Select <em>Properties</em></p></li>
 </ul>
 </li>
 </ul>
 <p><img alt="Windows data properties" src="_images/win-data-size.png" /></p>
 <ul class="simple">
-<li><p><strong>Sous Mac OS</strong> : dans <em>Finder</em></p>
+<li><p><strong>In macOS</strong>: with <em>Finder</em></p>
 <ul>
-<li><p>Sélectionner un dossier ou plusieurs fichiers</p></li>
-<li><p>Bouton droit de la souris -&gt; <em>Get Info</em></p></li>
-<li><p>Autrement : avec l’affichage <em>Par liste</em></p>
-<ul>
-<li><p><a class="reference external" href="https://www.solutionenligne.org/comment-afficher-taille-dossiers-fichiers-dans-finder-mac-os/">Activer <em>Calculer toutes les tailles</em></a></p></li>
-</ul>
-</li>
+<li><p>Select one directory or multiple files</p></li>
+<li><p>Right-click -&gt; Select <em>Get Info</em></p></li>
 </ul>
 </li>
 </ul>
 <ul class="simple">
-<li><p><strong>In Linux</strong> and on <strong>compute clusters</strong> :</p>
+<li><p><strong>In Linux</strong> and on <strong>compute clusters</strong>:</p>
 <ul>
 <li><p>The graphical environment can provide similar tools, but
 it depends on the Linux distribution and the chosen desktop</p></li>
 <li><p>The command <code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">-sb</span> <span class="pre">DIRECTORY</span></code> (<code class="docutils literal notranslate"><span class="pre">s</span></code> for total sum, <code class="docutils literal notranslate"><span class="pre">b</span></code> for
 apparent size in bytes) recursively computes and displays
 the total size of used space in bytes. The apparent size is
-important to consider while transferring or backuping the data</p></li>
+important to considerate while transferring or backuping the data</p></li>
 <li><p>The command <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">DIRECTORY</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code> recursively counts
 and displays the number of files and subdirectories</p></li>
 </ul>
@@ -1110,28 +1112,29 @@ per cluster:</p></li>
 <section id="key-points">
 <h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Prévoir les <strong>paramètres d’une tâche Slurm</strong></p>
+<li><p>Estimate <strong>Slurm job parameters</strong></p>
 <ul>
-<li><p>Nombre de processeurs (CPU) et de noeuds de calcul</p></li>
-<li><p>Nombre d’accélérateurs (GPU)</p></li>
-<li><p>Quantité de mémoire-vive (RAM)</p></li>
-<li><p>Temps du calcul (<code class="docutils literal notranslate"><span class="pre">JJ-H:M</span></code> ou <code class="docutils literal notranslate"><span class="pre">H:M:S</span></code>)</p></li>
+<li><p>Number of CPU cores and compute nodes</p></li>
+<li><p>Number of accelerators (GPU)</p></li>
+<li><p>Memory (RAM)</p></li>
+<li><p>Compute time (<code class="docutils literal notranslate"><span class="pre">DD-H:M</span></code> or <code class="docutils literal notranslate"><span class="pre">H:M:S</span></code>)</p></li>
 </ul>
 </li>
-<li><p>Différents <strong>outils pour surveiller</strong> les ressources utilisées</p>
+<li><p>Different <strong>tools to monitor</strong> used resources</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code> et autres bibliothèques de mesure du temps écoulé</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">time</span></code> and other libraries to measure elapsed time</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">top</span></code>, <code class="docutils literal notranslate"><span class="pre">htop</span></code>, <code class="docutils literal notranslate"><span class="pre">nvtop</span></code>, <code class="docutils literal notranslate"><span class="pre">nvidia-smi</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">sacct</span></code>, <code class="docutils literal notranslate"><span class="pre">seff</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">-sb</span></code>, <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code> et autres outils du système d’exploitation</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">du</span> <span class="pre">-sb</span></code>, <code class="docutils literal notranslate"><span class="pre">find</span> <span class="pre">|</span> <span class="pre">wc</span> <span class="pre">-l</span></code> and other operating system tools</p></li>
 </ul>
 </li>
-<li><p>On vise une <strong>efficacité de 90%</strong> et plus pour les tâches CPU</p>
+<li><p>Target <strong>efficiency of at least 90%</strong> for CPU jobs</p>
 <ul>
-<li><p>L’accélération avec un accélérateur (GPU) doit être significative (&gt;5x)</p></li>
+<li><p>The acceleration with a GPU should be significant (&gt;5x)</p></li>
 </ul>
 </li>
-<li><p>Le choix de la grappe dépend des besoins de chaque type de calcul</p></li>
+<li><p>The choice of a cluster depends on
+the needs of each type of compute tasks</p></li>
 </ul>
 </section>
 </section>
@@ -1203,7 +1206,7 @@ per cluster:</p></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#goal-writing-a-proper-job-script-for-slurm">Goal - Writing a Proper Job Script for Slurm</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#analysing-compute-jobs-on-your-computer">Analysing Compute Jobs on Your Computer</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-windows">In Windows</a></li>
-<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-mac-os">In Mac OS</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-macos">In macOS</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#in-linux">In Linux</a></li>
 </ul>
 </li>
