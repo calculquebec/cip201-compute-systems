@@ -378,50 +378,47 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="task-arrays-for-data-parallelism">
 <h1>Task Arrays for Data Parallelism<a class="headerlink" href="#task-arrays-for-data-parallelism" title="Link to this heading">#</a></h1>
-<p>Le calcul haute-performance consiste non seulement au calcul parallèle par tâche (<em><strong>parallélisme des tâches</strong></em>),
-mais aussi au calcul de données en parallèle dans plusieurs tâches et/ou processus en simultané (<em><strong>parallélisme de données</strong></em>).
-Ce chapitre vous donnera les outils nécessaires pour gérer un grand nombre de tâches
-lorsque le projet de recherche requiert plusieurs centaines de résultats.</p>
+<p>While high performance computing is usually designed for
+task parallelism, it can also be used to run multiple
+serial tasks simultaneously for data parallelism.
+This chapter will present useful tools to manage a large number of
+compute tasks when the research project requires hundreds of results.</p>
 <section id="gnu-parallel">
 <h2>GNU Parallel<a class="headerlink" href="#gnu-parallel" title="Link to this heading">#</a></h2>
-<p>La commande <code class="docutils literal notranslate"><span class="pre">parallel</span></code> de
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel/fr">GNU Parallel</a>
-permet d’utiliser pleinement les ressources locales d’un noeud de
-calcul, et ce, en gérant l’exécution d’une <strong>longue liste de tâches
-de <em>petite</em> taille</strong>.
-C’est un peu comme l’ordonnanceur Slurm, mais à plus petite échelle et
-en gérant des processus au lieu de scripts de tâche.</p>
-<p><img alt="Fonctionnement de GNU Parallel" src="_images/gnu-parallel.svg" /></p>
+<p>The <a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel">GNU <code class="docutils literal notranslate"><span class="pre">parallel</span></code> command</a>
+allows to fully use the resources on a compute node by managing
+the execution of a <strong>long list of <em>small</em> compute tasks</strong>.
+This is like the Slurm scheduler, but at a smaller
+scale and by managing processes instead of job scripts.</p>
+<p><img alt="GNU Parallel workflow" src="_images/gnu-parallel.svg" /></p>
 <ul class="simple">
-<li><p><a class="reference external" href="https://www.gnu.org/software/parallel/parallel.html">Documentation officielle</a></p></li>
-<li><p><a class="reference external" href="https://www.gnu.org/software/parallel/parallel_tutorial.html">Tutoriel</a></p></li>
+<li><p><a class="reference external" href="https://www.gnu.org/software/parallel/parallel.html">Official documentation</a></p></li>
+<li><p><a class="reference external" href="https://www.gnu.org/software/parallel/parallel_tutorial.html">Tutorial</a></p></li>
 </ul>
 <section id="why-not-slurm">
 <h3>Why Not Slurm?<a class="headerlink" href="#why-not-slurm" title="Link to this heading">#</a></h3>
-<p>OK, mais pourquoi ne pas tout simplement soumettre
-<strong>des centaines de tâches à Slurm</strong>?</p>
+<p>Why not simply submit <strong>hundreds of jobs to Slurm</strong>?</p>
 <ul class="simple">
-<li><p>À tout moment, Slurm <strong>limite chaque usager à 1000 tâches</strong>
-au total dans <code class="docutils literal notranslate"><span class="pre">squeue</span></code> (<em>pending</em> + <em>running</em>)</p></li>
-<li><p>Certains calculs sont tellement <strong>courts (&lt; 5 minutes)</strong> que le
-démarrage et la fin de la tâche compteraient pour un pourcentage
-significatif du temps réel utilisé, ce qui diminue leur efficacité</p></li>
+<li><p>At anytime, Slurm <strong>limits each user to 1000 jobs</strong>
+in its queue (including <em>pending</em> and <em>running</em> jobs)</p></li>
+<li><p>Certain compute tasks are so <strong>short (&lt; 5 minutes)</strong>
+that the time to properly start and end these tasks
+individually would significantly reduce their global efficiency</p></li>
 </ul>
-<p>Les avantages de GNU Parallel à considérer :</p>
+<p>GNU Parallel advantages:</p>
 <ul class="simple">
-<li><p>Nous <strong>évite d’utiliser une boucle</strong> soumettant des centaines de
-scripts similaires, ce qui, dans bien des cas, facilite
-l’exécution de centaines de cas de calcul semblables</p></li>
-<li><p>Le nombre de <strong>processeurs disponibles limite</strong> automatiquement le
-nombre de cas de calcul exécutés en simultané</p>
+<li><p><strong>No need of using a loop</strong>, which makes
+it easier to manage hundreds of compute tasks</p></li>
+<li><p>The number of <strong>available CPU cores automatically limits</strong>
+the number of simultaneous running tasks</p>
 <ul>
-<li><p>Dans le cas de calculs parallèles, c’est possible de spécifier
-le nombre de cas en simultané</p></li>
+<li><p>For a set of parallel tasks, it is possible to specify
+a smaller number of processes than the number of CPU cores</p></li>
 </ul>
 </li>
-<li><p>GNU Parallel peut
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel/fr#Suivi_des_commandes_ex.C3.A9cut.C3.A9es_ou_des_commandes_ayant_.C3.A9chou.C3.A9.3B_fonctionnalit.C3.A9s_de_red.C3.A9marrage">reprendre la séquence des cas de calcul</a>
-en situation de fin hâtive de la tâche Slurm</p></li>
+<li><p>GNU Parallel can
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/GNU_Parallel#Keeping_Track_of_Completed_and_Failed_Commands,_and_Restart_Capabilities">resume the sequence of compute tasks</a>
+in case of a job ending sooner than expected or what is needed</p></li>
 </ul>
 </section>
 <section id="gnu-parallel-command-syntax">
@@ -535,46 +532,42 @@ ls<span class="w"> </span>data/res_prll/
 <h3>Other Tools<a class="headerlink" href="#other-tools" title="Link to this heading">#</a></h3>
 <ul class="simple">
 <li><p>GLOST
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/GLOST/fr">pour des calculs séquentiels seulement</a></p></li>
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/GLOST">for serial tasks only</a></p></li>
 <li><p>META-Farm
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/META-Farm/fr">pour le meilleur de GNU Parallel et GLOST</a></p></li>
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/META-Farm">for the best of GNU Parallel and GLOST</a></p></li>
 </ul>
-<p>Alors que les précédents outils s’utilisent bien avec un lot de
-calculs séquentiels ou parallèles de petite taille (16 processeurs
-ou moins), <strong>ils ne sont pas</strong> vraiment <strong>appropriés pour</strong>
-un lot de <strong>longs calculs parallèles de plus grande taille</strong>
-(plus de 16 processeurs par calcul) :</p>
-<ul class="simple">
-<li><p>on veut éviter les longues tâches qui dépassent trois (3) jours et</p></li>
-<li><p>on veut réduire le risque de subir une défaillance matérielle.</p></li>
-</ul>
-<p>C’est pourquoi, dans certains cas, il vaut
-mieux utiliser les vecteurs de tâches.</p>
+<p>While the above tools can be useful with a set of serial tasks or
+small parallel tasks (16 cores or less), <strong>they are not appropriate
+for long and large parallel jobs</strong> (more than 16 cores per task):</p>
+<ol class="arabic simple">
+<li><p>we want to avoid jobs longer than 3 days, and</p></li>
+<li><p>we want to reduce the risk of being affected by a defective node.</p></li>
+</ol>
+<p>That is why, in some cases, it is better to use job arrays.</p>
 </section>
 </section>
 <section id="job-arrays">
 <h2>Job Arrays<a class="headerlink" href="#job-arrays" title="Link to this heading">#</a></h2>
-<p>Dans le cas où un même programme doit être exécuté avec différentes
-combinaisons de paramètres, il y a moyen de soumettre un seul
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_arrays/fr">vecteur de tâches</a>
-et de coder le script de tâche de telle sorte que les paramètres
-seront déterminés <strong>en fonction d’un indice unique</strong> du vecteur de tâches.</p>
+<p>In the case where a single program must be executed with
+different combinations of parameters, it is possible to submit
+a <a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_arrays">job array</a>
+and write the job script such that parameters will be derived
+<strong>in function of one unique integer value</strong> of the job array.</p>
 <p><img alt="How Job Arrays Work" src="_images/job-arrays.svg" /></p>
-<p><strong>Pour soumettre un vecteur de tâches</strong> à l’ordonnanceur Slurm, que ce
-soit à la ligne de commande <code class="docutils literal notranslate"><span class="pre">sbatch</span></code> ou dans l’entête <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code>
-du script de tâche, <strong>on doit ajouter l’option</strong> <code class="docutils literal notranslate"><span class="pre">--array=&lt;indices&gt;</span></code>.
-Voir <a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_arrays/fr">ici quelques exemples</a>.</p>
-<p>L’identifiant d’une tâche Slurm dans un vecteur de tâches contient :</p>
+<p><strong>To submit a job array</strong> to the Slurm scheduler, <strong>we must
+add the option</strong> <code class="docutils literal notranslate"><span class="pre">--array=&lt;integers&gt;</span></code> to the <code class="docutils literal notranslate"><span class="pre">#SBATCH</span></code> header.
+See <a class="reference external" href="https://docs.alliancecan.ca/wiki/Job_arrays">some examples here</a>.</p>
+<p>A job ID in a job array contains:</p>
 <ul class="simple">
-<li><p>L’identifiant du vecteur de tâches</p></li>
-<li><p>Caractère de soulignement (<code class="docutils literal notranslate"><span class="pre">_</span></code>)</p></li>
-<li><p>L’indice unique associé à la tâche</p></li>
+<li><p>The ID of the job array</p></li>
+<li><p>The underscore character (<code class="docutils literal notranslate"><span class="pre">_</span></code>)</p></li>
+<li><p>The unique integer associated to that job</p></li>
 </ul>
-<p><strong>Par exemple :</strong> <code class="docutils literal notranslate"><span class="pre">25249551_15</span></code></p>
-<p>Dans le script de tâche, la <strong>variable d’environnement</strong>
-<code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> peut être utilisée pour retrouver la valeur
-actuelle de l’indice unique associé à la tâche en cours d’exécution.
-Il s’agit d’un <strong>entier parmi</strong> les <code class="docutils literal notranslate"><span class="pre">&lt;indices&gt;</span></code>.</p>
+<p><strong>For example:</strong> <code class="docutils literal notranslate"><span class="pre">25249551_15</span></code></p>
+<p>In the job script, the <strong>environment variable</strong>
+<code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> can be used to retrieve the
+unique integer associated to the current running job.
+It is one of the specified <code class="docutils literal notranslate"><span class="pre">&lt;integers&gt;</span></code> in the header.</p>
 <p>The variable <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code> can be used in many ways.
 The below examples use <code class="docutils literal notranslate"><span class="pre">$N</span></code>, but <code class="docutils literal notranslate"><span class="pre">$SLURM_ARRAY_TASK_ID</span></code>
 works the same in a job script:</p>
