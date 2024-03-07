@@ -378,25 +378,25 @@ document.write(`
                   
   <section class="tex2jax_ignore mathjax_ignore" id="storage-spaces">
 <h1>Storage Spaces<a class="headerlink" href="#storage-spaces" title="Link to this heading">#</a></h1>
-<p>Il y a plusieurs types de stockage sur les grappes nationales :</p>
+<p>There are different types of storage spaces on national clusters:</p>
 <ul class="simple">
-<li><p>Personnel (<code class="docutils literal notranslate"><span class="pre">/home</span></code>)</p></li>
-<li><p>Temporaire local (<code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code>)</p></li>
-<li><p>Temporaire réseau (<code class="docutils literal notranslate"><span class="pre">/scratch</span></code>)</p></li>
-<li><p>Projet partagé (<code class="docutils literal notranslate"><span class="pre">/project</span></code>)</p></li>
-<li><p><em>Nearline</em> - stockage de longue durée (<code class="docutils literal notranslate"><span class="pre">/nearline</span></code>)</p></li>
+<li><p>Personal (<code class="docutils literal notranslate"><span class="pre">/home</span></code>)</p></li>
+<li><p>Temporary local (<code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code>)</p></li>
+<li><p>Temporary network (<code class="docutils literal notranslate"><span class="pre">/scratch</span></code>)</p></li>
+<li><p>Shared project (<code class="docutils literal notranslate"><span class="pre">/project</span></code>)</p></li>
+<li><p><em>Nearline</em> - for long term storage (<code class="docutils literal notranslate"><span class="pre">/nearline</span></code>)</p></li>
 </ul>
-<p>Or, vos données ont plusieurs aspects :</p>
+<p>Your data have the following attributes:</p>
 <ul class="simple">
-<li><p><strong>Taille</strong> : petits, gros, très gros fichiers</p></li>
-<li><p><strong>Nombre</strong> : peu nombreux ou en très grand nombre</p></li>
-<li><p><strong>Transférabilité</strong> : données regroupées et/ou compressées</p></li>
-<li><p><strong>Vie</strong> : pendant une tâche, entre des tâches, d’un projet à l’autre, à archiver</p></li>
-<li><p><strong>Niveau d’accès</strong> : données confidentielles, partagées, publiées</p></li>
+<li><p><strong>Size</strong>: small, large, very large files</p></li>
+<li><p><strong>Count</strong>: few files or a lot of files</p></li>
+<li><p><strong>Transferable</strong>: grouped and/or compressed data</p></li>
+<li><p><strong>Life cycle</strong>: in a job, between jobs,
+from one project to the next, to be archived</p></li>
+<li><p><strong>Access levels</strong>: confidential, shared, published</p></li>
 </ul>
-<p>Le but de ce chapitre est de considérer les principaux
-aspects nécessaires à la gestion des données actives
-sur les différents espaces de stockage disponibles.</p>
+<p>The goal of this chapter is to overview the basics of active data
+management on the available storage spaces on compute clusters.</p>
 <section id="different-types-of-storage">
 <h2>Different Types of Storage<a class="headerlink" href="#different-types-of-storage" title="Link to this heading">#</a></h2>
 <p>The following table shows which types of storage space are accessible
@@ -441,10 +441,10 @@ ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$HOME</spa
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><strong>Point d’entrée</strong> par défaut lors d’une connexion à une grappe de calcul</p></li>
-<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management/fr#Quotas_et_politiques">Quota d’espace relativement petit</a>, mais accepte un nombre de fichiers relativement grand</p>
+<li><p><strong>Entry point</strong> by default when you connect to a compute cluster</p></li>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management#Filesystem_quotas_and_policies">Relatively small quota limit</a>, but accepts a relatively large number of files</p>
 <ul>
-<li><p>Idéal pour la <a class="reference external" href="https://docs.alliancecan.ca/wiki/Installing_software_in_your_home_directory/fr">compilation et l’installation de logiciels</a></p></li>
+<li><p>Ideal for <a class="reference external" href="https://docs.alliancecan.ca/wiki/Installing_software_in_your_home_directory">installing software in your home directory</a></p></li>
 </ul>
 </li>
 </ul>
@@ -460,21 +460,23 @@ df<span class="w"> </span>-h<span class="w"> </span><span class="nv">$SLURM_TMPD
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_node-local_storage/fr">Stockage local très rapide</a>, mais limité à la durée de la tâche de calcul</p>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_node-local_storage">Very fast local storage</a>,
+but limited in size and to the duration of the compute job</p>
 <ul>
-<li><p><strong>Faible latence</strong> à comparé <em>Lustre</em></p></li>
-<li><p>Grande bande-passante, en particulier pour les petits fichiers</p></li>
-<li><p><strong>Données supprimées à la fin</strong> de la tâche de calcul</p></li>
-<li><p>Si plusieurs noeuds travaillent sur un même calcul parallèle,
-<strong>chaque noeud a son propre dossier</strong> <code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code></p></li>
+<li><p><strong>Low latency</strong> compared to <em>Lustre</em> (the network filesystem)</p></li>
+<li><p>Great bandwidth, even for small files</p></li>
+<li><p><strong>Data deleted at the end</strong> of the compute job</p></li>
+<li><p>If multiple nodes are reserved for a single parallel job,
+<strong>each node has its own directory</strong> <code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code></p></li>
 </ul>
 </li>
-<li><p>Cas d’utilisation :</p>
+<li><p>Use cases:</p>
 <ul>
-<li><p><strong>Importation</strong> de plusieurs <strong>petits fichiers</strong> qui seront
-utilisés à répétition lors d’un calcul</p></li>
-<li><p><strong>Sauvegarde</strong> de fichiers qui sont <strong>constamment modifiés</strong> -
-à exporter vers <em>Lustre</em> à la fin du calcul</p></li>
+<li><p><strong>Importing</strong> multiple <strong>small files</strong> which
+will be used repeatedly during the calculation</p></li>
+<li><p><strong>Saving</strong> files which will be <strong>constantly modified</strong> -
+these files will have to be copied to <code class="docutils literal notranslate"><span class="pre">/project</span></code>
+or <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> before the end of the job</p></li>
 </ul>
 </li>
 </ul>
@@ -486,19 +488,22 @@ ls<span class="w"> </span>-ld<span class="w"> </span><span class="nv">$SCRATCH</
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Espace de stockage réseau de <a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management/fr#Quotas_et_politiques">grande capacité</a> pour des <strong>données temporaires</strong></p>
+<li><p>Network storage space of
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management#Filesystem_quotas_and_policies">great capacity</a>
+for <strong>temporary data</strong></p>
 <ul>
-<li><p><strong>Pas</strong> sauvegardé</p></li>
-<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Scratch_purging_policy/fr">Purge mensuelle</a> pour les données âgées de plus de 60 jours</p></li>
+<li><p><strong>Not</strong> backed up</p></li>
+<li><p><a class="reference external" href="https://docs.alliancecan.ca/wiki/Scratch_purging_policy">Monthly purge</a>
+for the data older than 60 days</p></li>
 </ul>
 </li>
-<li><p>Performance variable selon l’utilisation de l’ensemble des utilisateurs</p></li>
-<li><p>Cas d’utilisation :</p>
+<li><p>Variable performance according to the use by all users</p></li>
+<li><p>Use cases:</p>
 <ul>
-<li><p>Utilisation de données <strong>pendant quelques jours</strong> seulement</p></li>
-<li><p>Stocker temporairement des <strong>résultats en grand nombre</strong> de fichiers</p></li>
-<li><p>Stocker des résultats <strong>intermédiaires</strong> qui sont <strong>trop gros</strong>
-pour <code class="docutils literal notranslate"><span class="pre">/project</span></code></p></li>
+<li><p>Using a dataset <strong>for only a few days</strong></p></li>
+<li><p>Storing <strong>results temporarily</strong> if made of hundreds of files</p></li>
+<li><p>Storing <strong>intermediate</strong> results which
+would be <strong>too big</strong> for <code class="docutils literal notranslate"><span class="pre">/project</span></code></p></li>
 </ul>
 </li>
 </ul>
@@ -511,69 +516,74 @@ ls<span class="w"> </span>-l<span class="w"> </span>/project/def-sponsor00
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Espace de stockage réseau de <a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management/fr#Quotas_et_politiques">petite à grande capacité</a> pour des <strong>données de projet</strong></p>
+<li><p>Network storage space of
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Storage_and_file_management#Filesystem_quotas_and_policies">small or large capacity</a>
+for <strong>project data</strong></p>
 <ul>
-<li><p>Un espace projet par défaut par groupe de recherche (sauf sur Niagara)</p>
+<li><p>A default project space per research group (except on Niagara)</p>
 <ul>
-<li><p>Petite augmentation d’espace projet <strong>sur simple demande (jusqu’à 10 To)</strong></p></li>
-<li><p>Quota plus élevé si <a class="reference external" href="https://alliancecan.ca/fr/services/calcul-informatique-de-pointe/acces-aux-ressources/concours-pour-lallocation-de-ressources">allocation spéciale</a></p></li>
+<li><p>The quota can be increased by a few TB <strong>on demand by email</strong></p></li>
+<li><p>For a much larger project space, the PI needs to submit a
+<a class="reference external" href="https://alliancecan.ca/en/services/advanced-research-computing/accessing-resources/resource-allocation-competition">RAC request</a></p></li>
 </ul>
 </li>
-<li><p>Sauvegardé <strong>quotidiennement</strong></p>
+<li><p>Backed up <strong>daily</strong></p>
 <ul>
-<li><p>Nombre de fichiers relativement limité (500k par défaut)</p></li>
+<li><p>The quota on the number of files is limited (500k by default)</p></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><p>Données de projet :</p>
+<li><p>Project data:</p>
 <ul>
-<li><p>Potentiellement <strong>partagées</strong> - <a class="reference external" href="https://docs.alliancecan.ca/wiki/Sharing_data/fr">configuration des ACLs</a></p></li>
-<li><p>Durée de vie en fonction de la durée d’un projet</p></li>
-<li><p>Typiquement plus importantes que les données temporaires</p></li>
+<li><p>Potentially <strong>shared</strong> -
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Sharing_data">configuration of ACLs</a></p></li>
+<li><p>Last as long as the project lasts</p></li>
+<li><p>Typically more important than temporary data</p></li>
 </ul>
 </li>
-<li><p>Cas d’utilisation :</p>
+<li><p>Use cases:</p>
 <ul>
-<li><p>Stockage de jeux de données <strong>réutilisés sur plusieurs mois et/ou par plusieurs personnes</strong></p></li>
-<li><p>Stockage de <strong>résultats finaux</strong> coûteux à reproduire</p></li>
+<li><p>Storing datasets that are <strong>reused over
+multiple months or shared by many group members</strong></p></li>
+<li><p>Storing <strong>final results</strong> which would be too expensive to recreate</p></li>
 </ul>
 </li>
 </ul>
 </section>
 <section id="nearline-long-term-storage">
 <h3><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> - Long Term Storage<a class="headerlink" href="#nearline-long-term-storage" title="Link to this heading">#</a></h3>
-<p>Interface de stockage sur disque :</p>
+<p>Storage interface on disk:</p>
 <ul class="simple">
-<li><p>On peut voir les fichiers avec la commande <code class="docutils literal notranslate"><span class="pre">ls</span></code></p></li>
-<li><p>Les données les plus anciennes dans
-<a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_nearline_storage/fr"><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> sont probablement sur ruban</a></p>
+<li><p>We can see the files with the <code class="docutils literal notranslate"><span class="pre">ls</span></code> command</p></li>
+<li><p>The oldest data in
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_nearline_storage"><code class="docutils literal notranslate"><span class="pre">/nearline</span></code> is most likely moved to tape</a></p>
 <ul>
-<li><p>Voir les commandes pour <a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_nearline_storage/fr#Transf.C3.A9rer_des_donn.C3.A9es_.C3.A0_partir_de_.2Fnearline">diagnostiquer l’état des fichiers</a> dans <code class="docutils literal notranslate"><span class="pre">/nearline</span></code></p></li>
+<li><p>There are command lines to
+<a class="reference external" href="https://docs.alliancecan.ca/wiki/Using_nearline_storage#Transferring_data_from_Nearline">check the status of your files</a>
+in <code class="docutils literal notranslate"><span class="pre">/nearline</span></code></p></li>
 </ul>
 </li>
 </ul>
-<p>À considérer :</p>
+<p>To considerate:</p>
 <ul class="simple">
-<li><p>D’une part, la migration de données sur ruban réduit l’espace
-utilisé sur les disques - économie d’argent pour le stockage</p></li>
-<li><p>D’autre part, chaque lecture de fichier migré sur ruban créera
-<strong>une requête bloquante</strong> causant un temps de réponse de quelques
-minutes à quelques heures (si le système d’archivage est surchargé
-de requêtes)</p>
+<li><p>The migration of the data to tape reduces the space used on
+disk, which saves some money when buying the storage system</p></li>
+<li><p>Each read operation of a migrated file to tape will create
+<strong>a blocking request</strong> which causes a response time of a few
+minutes to hours (when the tape system is overloaded of requests)</p>
 <ul>
-<li><p>Voilà pourquoi il est impératif d’y sauvegarder un
-<strong>faible nombre de très grands fichiers</strong></p></li>
-<li><p><strong>À éviter</strong> : y copier de nombreux petits fichiers avant de les
-regrouper dans un fichier d’archive</p></li>
+<li><p>That is why it is necessary to save
+a <strong>small number of large files</strong></p></li>
+<li><p><strong>To avoid</strong>: copying numerous small files on
+Nearline before grouping them in archive files</p></li>
 </ul>
 </li>
 </ul>
-<p>Cas d’utilisation :</p>
+<p>Use cases:</p>
 <ul class="simple">
-<li><p>Regrouper des fichiers provenant de <code class="docutils literal notranslate"><span class="pre">/project</span></code> ou de <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p></li>
-<li><p>Stockage de données importantes <strong>qui ne seront pas utilisées
-pendant plusieurs mois</strong></p></li>
+<li><p>Grouping files from <code class="docutils literal notranslate"><span class="pre">/project</span></code> or <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p></li>
+<li><p>Storing important data <strong>that will not be used for months</strong></p></li>
 </ul>
 </section>
 </section>
@@ -610,29 +620,32 @@ to delete or archive specific files in the long term.</p>
 <section id="example-of-the-life-cycle-of-active-data">
 <h4>Example of the Life Cycle of Active Data<a class="headerlink" href="#example-of-the-life-cycle-of-active-data" title="Link to this heading">#</a></h4>
 <p><img alt="Pipeline 1" src="_images/data-flow-1.svg" /></p>
-<p>Description des différentes étapes :</p>
+<p>Description of each step:</p>
 <ul class="simple">
-<li><p>Téléchargement des données dans <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p>
+<li><p>A dataset is downloaded in <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p>
 <ul>
-<li><p>Pour une utilisation de quelques jours à quelques semaines</p></li>
-<li><p>Nul besoin de les protéger davantage</p></li>
+<li><p>To be used between a few days and a few weeks</p></li>
+<li><p>No need to backup the data (it is easily recoverable)</p></li>
 </ul>
 </li>
-<li><p>Soumettre une série de tâches de calcul</p>
+<li><p>Submission of multiple compute jobs</p>
 <ul>
-<li><p>Une tâche par fichier dans <code class="docutils literal notranslate"><span class="pre">dossier</span></code> dans la partition <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p></li>
+<li><p>One job per file in <code class="docutils literal notranslate"><span class="pre">data</span></code> in the <code class="docutils literal notranslate"><span class="pre">/scratch</span></code> partition</p></li>
 </ul>
 </li>
-<li><p>Le script de tâche est dans la partition <code class="docutils literal notranslate"><span class="pre">/home</span></code></p>
+<li><p>The job script is located in the <code class="docutils literal notranslate"><span class="pre">/home</span></code> partition</p>
 <ul>
-<li><p>Utilisation des variables <code class="docutils literal notranslate"><span class="pre">$FIC</span></code> et <code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> pour copier le fichier à traiter localement sur le noeud de calcul</p></li>
-<li><p>Se déplacer dans le dossier local</p></li>
-<li><p>Y configurer un environnement Python</p></li>
-<li><p>Exécuter le code Python présent dans <code class="docutils literal notranslate"><span class="pre">/home</span></code>, fournir le nom du fichier à traiter et rediriger toutes les sorties dans un fichier local</p></li>
-<li><p>Rapatrier le fichier de résultats dans un dossier dans <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p></li>
+<li><p>It uses variables <code class="docutils literal notranslate"><span class="pre">$FIC</span></code> and <code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code> to copy
+the data file to process locally on the compute node</p></li>
+<li><p>Move the session to the local directory</p></li>
+<li><p>Configure a Python environment</p></li>
+<li><p>Execute the Python code saved in <code class="docutils literal notranslate"><span class="pre">/home</span></code>, provide the name of
+the file to process and redirect the output to a local file</p></li>
+<li><p>Copy the results file to a directory in <code class="docutils literal notranslate"><span class="pre">/scratch</span></code></p></li>
 </ul>
 </li>
-<li><p>Post-traitement - traiter tous les fichiers de résultats afin de ne garder que l’essentiel dans <code class="docutils literal notranslate"><span class="pre">/project</span></code></p></li>
+<li><p>Post-process - process all results files and
+keep only the necessary information in <code class="docutils literal notranslate"><span class="pre">/project</span></code></p></li>
 </ul>
 </section>
 <section id="exercise-running-a-small-pipeline">
@@ -670,37 +683,38 @@ to delete or archive specific files in the long term.</p>
 <section id="in-case-of-inaccessible-data">
 <h3>In Case of Inaccessible Data<a class="headerlink" href="#in-case-of-inaccessible-data" title="Link to this heading">#</a></h3>
 <ul class="simple">
-<li><p>Une professeure ou un professeur peut demander à ce que les données soient supprimées</p></li>
-<li><p>Par contre, pour obtenir l’accès aux données, il faut avoir le consentement de la personne qui les a isolées (probablement involontairement)</p>
+<li><p>A professor can request the deletion of the inaccessible data</p></li>
+<li><p>To get access to the data, we need the consent of the user
+that has blocked the access (most of the time not on purpose)</p>
 <ul>
-<li><p>En cas d’absence de réponse, c’est la politique de l’université du groupe de recherche qui permettra ou non d’obtenir l’accès aux données</p></li>
+<li><p>In case of no response, the research group’s institution
+policy can allow or not the access to the data</p></li>
 </ul>
 </li>
 </ul>
-<p>Dans tous les cas, il vaut mieux planifier, et ce,
-dès l’importation de données sur les grappes de calcul.</p>
+<p>In all cases, it is better to plan the data management
+in advance, even when importing data on compute clusters.</p>
 </section>
 </section>
 <section id="key-points">
 <h2>Key Points<a class="headerlink" href="#key-points" title="Link to this heading">#</a></h2>
 <ul class="simple">
-<li><p>Le système de fichiers <em>Lustre</em> est optimisé pour des gros fichiers
-(+10 Mo)</p>
+<li><p>The <em>Lustre</em> file system is optimized for large files (+10 MB)</p>
 <ul>
-<li><p>Ne pas mettre trop de fichiers et dossiers dans un même répertoire
+<li><p>Avoid saving too many files and directories in a directory
 (maximum 1000 items)</p></li>
 </ul>
 </li>
-<li><p>Pour le transfert de données et l’utilisation du <em>Nearline</em>,
-il vaut mieux regrouper les données dans un fichier archive
-(comme Zip, DAR, etc.)</p></li>
-<li><p>Dans l’espace projet, il faut planifier qui devrait avoir accès à quoi et quand</p></li>
-<li><p>Pour optimiser les tâches, utiliser <code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code></p></li>
-<li><p>La commande <code class="docutils literal notranslate"><span class="pre">diskusage_report</span></code> pour un aperçu de l’espace utilisé</p></li>
-<li><p>Pour les données et codes critiques :</p>
+<li><p>For data transfers and the use of <em>Nearline</em>, it is
+better to group data in archive files (like Zip, DAR, etc.)</p></li>
+<li><p>In the project space, the group must
+plan who should access to what and when</p></li>
+<li><p>To optimize jobs, use the <code class="docutils literal notranslate"><span class="pre">$SLURM_TMPDIR</span></code></p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">diskusage_report</span></code> command returns an overview of used space</p></li>
+<li><p>For critical data and codes:</p>
 <ul>
-<li><p>avoir une copie ailleurs et</p></li>
-<li><p>utiliser un gestionnaire de versions.</p></li>
+<li><p>have a copy elsewhere, and</p></li>
+<li><p>use a version control system</p></li>
 </ul>
 </li>
 </ul>
